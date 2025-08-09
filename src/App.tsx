@@ -1,7 +1,9 @@
 import HeaderLayout from "./layouts/header";
 function App() {
   return (
-    <div> <HeaderLayout />  
+    return (
+     <HeaderLayout />  
+     )
      </div>
   );
 }
