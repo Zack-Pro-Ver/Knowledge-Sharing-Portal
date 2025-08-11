@@ -1,8 +1,10 @@
-import HeaderLayout from "./layouts/header";
+import Navbar from "./components/Navbar";
+// import Header from "./components/Header/Header";
+
 function App() {
   return (
-    <div> <HeaderLayout />  
-     </div>
+    <> <Navbar />  
+     </>
   );
 }
 
