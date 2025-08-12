@@ -1,3 +1,3 @@
 // Export all elements from this directory
 export { default as Button } from './button';
-export { default as TextField } from './TextFieldrenaming';
+export { default as TextField } from './TextField';
