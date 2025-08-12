@@ -1,5 +1,5 @@
 import React from "react";
-import Card, { CardHeader, CardContent, CardFooter } from "../elements/card";
+import Card, { CardHeader, CardContent, CardFooter } from "../elements/Card";
 
 const CardRef = () => {
   return (
