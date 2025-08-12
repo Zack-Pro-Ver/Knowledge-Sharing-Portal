@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Dropdown from "../elements/Dropdown";
-import type { DropdownOption } from "../elements/Dropdown/Dropdown.types";
+import Dropdown from "../elements/dropdownrenaming";
+import type { DropdownOption } from "../elements/dropdownrenaming/Dropdown.types";
 
 const DropdownRef = () => {
   const [selectedValue, setSelectedValue] = useState<string | number>("");
