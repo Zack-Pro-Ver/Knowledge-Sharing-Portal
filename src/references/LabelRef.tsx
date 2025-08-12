@@ -1,5 +1,5 @@
 import React from "react";
-import Label from "../elements/label";
+import Label from "../elements/Label";
 
 const LabelRef = () => {
   return (
