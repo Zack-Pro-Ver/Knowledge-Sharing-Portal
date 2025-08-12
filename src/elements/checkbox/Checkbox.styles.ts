@@ -24,16 +24,16 @@ export const getCheckboxStyles = (
 
   // Size classes for checkbox
   const sizeClasses = {
-    small: ['w-4', 'h-4', 'rounded'],
-    medium: ['w-5', 'h-5', 'rounded'],
-    large: ['w-6', 'h-6', 'rounded-md'],
+    small: ['w-4', 'h-4', 'rounded-sm'],
+    medium: ['w-5', 'h-5', 'rounded-sm'],
+    large: ['w-6', 'h-6', 'rounded-sm'],
   };
 
   // Color schemes
   const colorSchemes = {
     primary: {
       base: 'border-gray-300',
-      checked: 'bg-blue-600 border-blue-600',
+      checked: 'bg-blue-600 border-blue-600 shadow-md',
       hover: 'hover:border-blue-400',
       focus: 'focus-visible:ring-blue-500',
     },

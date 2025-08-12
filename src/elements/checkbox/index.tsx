@@ -22,8 +22,12 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     ...otherProps
   } = props;
 
-  const checkboxStyles = getCheckboxStyles(checkboxSize, color, disabled, checked || indeterminate);
-  const checkIconStyles = getCheckIconStyles(checkboxSize);
+  const checkboxStyles = getCheckboxStyles(
+    checkboxSize,
+    color,
+    disabled,
+    checked || indeterminate
+  );
   const labelStyles = getLabelStyles(labelPlacement);
   const indeterminateStyles = getIndeterminateStyles();
 
@@ -45,14 +49,14 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         className="sr-only"
         {...otherProps}
       />
-      
+
       <div className={checkboxStyles}>
         {checked && !indeterminate && (
           <svg
-            className={`${checkIconStyles} text-white`}
+            className="w-5 h-5 text-white drop-shadow-md"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
+            stroke="white"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -60,24 +64,18 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         )}
-        
+
         {indeterminate && (
-          <svg
-            className={`${checkIconStyles} text-white`}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
+          <div className={`${indeterminateStyles} text-white flex items-center justify-center drop-shadow-md`}>
+            <div className="w-3/4 h-0.5 bg-white rounded"></div>
+          </div>
         )}
       </div>
-      
+
       {label && (
-        <span className={`text-sm ${disabled ? "text-gray-400" : "text-gray-700"}`}>
+        <span
+          className={`text-sm ${disabled ? "text-gray-400" : "text-gray-700"}`}
+        >
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </span>
