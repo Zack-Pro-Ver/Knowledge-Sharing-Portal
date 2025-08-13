@@ -11,10 +11,6 @@ const Navigation = () => {
                 to="/overview">
                 Overview
               </Link>
-              <Link
-                to="/dashboard">
-                Dashboard
-              </Link>
             </div>
       </div>
     </nav>
