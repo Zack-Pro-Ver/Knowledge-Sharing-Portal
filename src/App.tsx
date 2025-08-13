@@ -1,13 +1,10 @@
-import Icon from "./elements/Icon";
-import IconRef from "./references/iconRef";
 function App() {
   return (
-    <>
-      <Icon size="medium" color="inherit">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-      </Icon>
-      <IconRef />
-    </>
+    <div className="flex h-screen items-center justify-center bg-gradient-to-tr from-blue-400 to-purple-500">
+      <h1 className="text-4xl font-bold text-green-500">
+        Welcome to Tailwind CSS + Vite + React!
+      </h1>
+    </div>
   );
 }
 
