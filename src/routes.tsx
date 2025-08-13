@@ -21,36 +21,36 @@ export const router = createBrowserRouter([
         element: <Overview />,
       },
       {
-        path:"Badges",
+        path:"padges",
         element: <Badges />,
       },
       {
-        path:"MyAnswers",
+        path:"myanswers",
         element: <MyAnswers />,
       },
       {
-        path:"MyQuestions",
+        path:"myquestions",
         element: <MyQuestions />,
       },
       {
-        path:"MyProfile",
+        path:"myprofile",
         element: <MyProfile />,
       },
       { 
-        path:"Notifications",
+        path:"notifications",
         element: <Notification />,
       },
       {
-        path:"AdminControl/ContentManagement",
+        path:"admincontrol/contentmanagement",
         element: <ContentManagement />,
       },
       {
-        path:"AdminControl/ModerationQueue",
+        path:"admincontrol/moderationqueue",
         element: <ModerationQueue />,
       
       },
       {
-        path:"AdminControl/UserManagement",
+        path:"admincontrol/usermanagement",
         element: <UserManagement />,
       },
       
