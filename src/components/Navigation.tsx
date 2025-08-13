@@ -8,8 +8,40 @@ const Navigation = () => {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
-                to="/overview">
+                to="/Overview">
                 Overview
+              </Link>
+              <Link
+                to="/Badges">
+                Badges
+              </Link>
+              <Link
+                to="/MyQuestions">
+                MyQuestions
+              </Link>
+              <Link
+                to="/MyAnswers">
+                MyAnswers
+              </Link>
+              <Link
+                to="/MyProfile">
+                MyProfile
+              </Link>
+              <Link
+                to="/Notifications">
+                Notifications
+              </Link>
+              <Link
+                to="/ContentManagement/AdminControl">
+                ContentManagement
+              </Link>
+              <Link
+                to="/ModerationQueue/AdminControl">
+                ModerationQueue
+              </Link>
+              <Link
+                to="/UserManagement/AdminControl">
+                UserManagement
               </Link>
             </div>
       </div>
