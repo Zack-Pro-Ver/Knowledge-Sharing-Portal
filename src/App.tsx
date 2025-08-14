@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Sidebar from "./components/Sidebar";
 
 function App() {
@@ -9,6 +10,13 @@ function App() {
     // </div>
     <Sidebar />
   );
+=======
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+
+function App() {
+  return <RouterProvider router={router} />;
+>>>>>>> db97362f2bd2bc498cdfa2eae57e3665f6f0d490
 }
 
 export default App;
