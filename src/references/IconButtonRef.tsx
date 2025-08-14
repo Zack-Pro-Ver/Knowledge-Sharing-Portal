@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IconButton from "../elements/IconButtonRenaming";
+import IconButton from "../elements/IconButton";
 
 const IconButtonRef = () => {
   const [disabled, setDisabled] = useState(false);
