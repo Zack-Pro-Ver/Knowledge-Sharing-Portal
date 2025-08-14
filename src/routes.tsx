@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import Overview from "./pages/Overview/Overview";
-import Badges from "./pages/Badges";
-import MyAnswers from "./pages/MyAnswers";
-import MyQuestions from "./pages/MyQuestions";
-import MyProfile from "./pages/MyProfile";
-import Notification from "./pages/Notifications";
-import ContentManagement from "./pages/AdminControl/ContentManagement";
-import ModerationQueue from "./pages/AdminControl/ModerationQueue";
-import UserManagement from "./pages/AdminControl/UserManagement";
+import {Overview} from "./pages/Overview";
+import {Badges} from "./pages/Badges";
+import {MyAnswers} from "./pages/MyAnswers";
+import {MyQuestions} from "./pages/MyQuestions";
+import {MyProfile} from "./pages/MyProfile";
+import {Notification} from "./pages/Notifications";
+import { ContentManagement } from "./pages/AdminControl/ContentManagement";
+import { ModerationQueue} from "./pages/AdminControl/ModerationQueue";
+import {UserManagement} from "./pages/AdminControl/UserManagement";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -21,19 +21,19 @@ export const router = createBrowserRouter([
         element: <Overview />,
       },
       {
-        path:"padges",
+        path:"Badges",
         element: <Badges />,
       },
       {
-        path:"myanswers",
+        path:"my-answers",
         element: <MyAnswers />,
       },
       {
-        path:"myquestions",
+        path:"my-questions",
         element: <MyQuestions />,
       },
       {
-        path:"myprofile",
+        path:"my-profile",
         element: <MyProfile />,
       },
       { 
@@ -41,16 +41,16 @@ export const router = createBrowserRouter([
         element: <Notification />,
       },
       {
-        path:"admincontrol/contentmanagement",
+        path:"admin-control/content-management",
         element: <ContentManagement />,
       },
       {
-        path:"admincontrol/moderationqueue",
+        path:"admin-control/moderation-queue",
         element: <ModerationQueue />,
       
       },
       {
-        path:"admincontrol/usermanagement",
+        path:"admin-control/user-management",
         element: <UserManagement />,
       },
       
