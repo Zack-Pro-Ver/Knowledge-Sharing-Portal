@@ -39,24 +39,24 @@ export const router = createBrowserRouter([
       { 
         path:"notifications",
         element: <Notification />,
-      },  
-    ],
-  },
-  {
-    path: "admin-control/",
-    children: [
-      { index: true, 
-        element: <Navigate to="content-management" /> 
-      },
-      { path: "content-management", 
-        element: <ContentManagement /> 
-      },
-      { path: "moderation-queue",
-         element: <ModerationQueue />
-      },
-      { path: "user-management", 
-        element: <UserManagement /> 
-      },
-    ],
+      }, 
+      {
+        path: "admin-control/",
+        children: [
+        { index: true, 
+          element: <Navigate to="content-management" /> 
+        },
+        { path: "content-management", 
+          element: <ContentManagement /> 
+        },
+        { path: "moderation-queue",
+          element: <ModerationQueue />
+        },
+        { path: "user-management", 
+          element: <UserManagement /> 
+        },
+      ], 
+    },
+  ], 
   },
 ]);
