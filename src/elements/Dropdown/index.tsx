@@ -56,8 +56,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       )
     : options;
 
-  console.log("Filtered Options:", filteredOptions);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (

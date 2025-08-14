@@ -9,14 +9,17 @@ import { ContentManagement } from "./pages/AdminControl/ContentManagement";
 import { ModerationQueue } from "./pages/AdminControl/ModerationQueue";
 import { UserManagement } from "./pages/AdminControl/UserManagement";
 import Sidebar from "./components/Sidebar";
+import MainLayout from "./layouts/MainLayout";
+import { useNavigate } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        element: <Sidebar />,
+        element: <Navigate to="overview" />,
       },
       {
         path: "overview",

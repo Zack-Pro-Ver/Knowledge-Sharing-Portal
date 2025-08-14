@@ -1,15 +1,33 @@
+import { Link, useLocation } from "react-router";
 import { Dropdown } from "../../elements";
 import Label from "../../elements/Label";
 import { SideBarContents, sidebarOptions } from "./Sidebar.constant";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeTitle, setActiveTitle] = useState<string>("Overview");
-  const [selectedValue, setSelectedValue] = useState<string>("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const cPath = currentPath.split("/");
+
+  const activeObject = SideBarContents.find(({ path }) => cPath[1] === path);
+
+  const dropdownOption = sidebarOptions.find(
+    (option) => option.value === cPath[2]
+  );
+
+  const [activeTitle, setActiveTitle] = useState<string>(
+    activeObject?.title || "Overview"
+  );
+  const [selectedValue, setSelectedValue] = useState<string>(
+    dropdownOption?.value || ""
+  );
 
   const handleChange = (value: string | number) => {
     if (typeof value === "string") {
       setSelectedValue(value);
+      navigate(`admin-control/${value}`);
     }
   };
 
@@ -33,8 +51,8 @@ const Sidebar = () => {
                 }
               >
                 {variant === "link" ? (
-                  <a
-                    href={path}
+                  <Link
+                    to={path}
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
                     {Icon && (
@@ -59,7 +77,7 @@ const Sidebar = () => {
                         {length}
                       </span>
                     )}
-                  </a>
+                  </Link>
                 ) : (
                   <>
                     <Label>{title}</Label>
