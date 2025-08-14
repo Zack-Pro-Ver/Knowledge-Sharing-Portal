@@ -15,9 +15,8 @@
     "heroicons": "^2.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-<<<<<<< HEAD
-    "react-router-dom": "^7.8.0"
-=======
+    "react-router": "^7.8.0",
+    "react-router-dom": "^7.8.0",
     "recharts": "^3.1.2"
 >>>>>>> 78faee17164f7e96690eeb2b9cf6dc11f1389491
   },
