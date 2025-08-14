@@ -1,5 +1,5 @@
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
-import type { DropdownProps, DropdownOption } from './Dropdown.types';
+import React, { forwardRef, useState, useRef, useEffect } from "react";
+import type { DropdownProps, DropdownOption } from "./Dropdown.types";
 import {
   getDropdownStyles,
   getMenuStyles,
@@ -7,17 +7,17 @@ import {
   getIconStyles,
   getArrowStyles,
   getLoadingStyles,
-} from './Dropdown.styles';
+} from "./Dropdown.styles";
 
 const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
     options,
     value,
     onChange,
-    placeholder = 'Select an option',
-    variant = 'outlined',
-    size = 'medium',
-    color = 'primary',
+    placeholder = "Select an option",
+    variant = "outlined",
+    size = "medium",
+    color = "primary",
     disabled = false,
     loading = false,
     fullWidth = false,
@@ -25,13 +25,13 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     clearable = false,
     disableElevation = false,
     renderOption,
-    noOptionsText = 'No options available',
-    className = '',
+    noOptionsText = "No options available",
+    className = "",
     ...otherProps
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -49,26 +49,31 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const arrowStyles = getArrowStyles();
   const loadingStyles = getLoadingStyles();
 
-  const selectedOption = options.find(option => option.value === value);
+  const selectedOption = options.find((option) => option.value === value);
   const filteredOptions = searchable
-    ? options.filter(option =>
+    ? options.filter((option) =>
         option.label.toLowerCase().includes(searchValue.toLowerCase())
       )
     : options;
 
+  console.log("Filtered Options:", filteredOptions);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
 
@@ -82,15 +87,15 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (disabled || loading) return;
 
     switch (event.key) {
-      case 'Enter':
-      case ' ':
+      case "Enter":
+      case " ":
         event.preventDefault();
         setIsOpen(!isOpen);
         break;
-      case 'Escape':
+      case "Escape":
         setIsOpen(false);
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         event.preventDefault();
         if (!isOpen) {
           setIsOpen(true);
@@ -101,10 +106,10 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
   const handleOptionClick = (option: DropdownOption) => {
     if (option.disabled) return;
-    
+
     onChange?.(option.value);
     setIsOpen(false);
-    setSearchValue('');
+    setSearchValue("");
   };
 
   const handleClear = (event: React.MouseEvent) => {
@@ -115,12 +120,12 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   return (
     <div
       ref={dropdownRef}
-      className={`relative ${fullWidth ? 'w-full' : ''} ${className}`}
+      className={`relative ${fullWidth ? "w-full" : ""} ${className}`}
       {...otherProps}
     >
       <button
         type="button"
-        className={`${dropdownStyles} ${isOpen ? 'ring-2 ring-offset-2' : ''}`}
+        className={`${dropdownStyles} ${isOpen ? "ring-2 ring-offset-2" : ""}`}
         disabled={disabled || loading}
         onClick={() => !disabled && !loading && setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
@@ -133,11 +138,16 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             {selectedOption?.icon && (
               <span className={iconStyles}>{selectedOption.icon}</span>
             )}
+            {selectedOption?.Icon && (
+              <span className={iconStyles}>
+                <selectedOption.Icon />
+              </span>
+            )}
             <span className="truncate">
               {selectedOption?.label || placeholder}
             </span>
           </span>
-          
+
           <span className="flex items-center gap-2">
             {clearable && selectedOption && !disabled && !loading && (
               <button
@@ -161,7 +171,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 </svg>
               </button>
             )}
-            
+
             {loading && (
               <span className={loadingStyles}>
                 <svg
@@ -186,9 +196,9 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 </svg>
               </span>
             )}
-            
+
             <svg
-              className={`${arrowStyles} ${isOpen ? 'rotate-180' : ''}`}
+              className={`${arrowStyles} ${isOpen ? "rotate-180" : ""}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -205,11 +215,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       </button>
 
       {isOpen && (
-        <div
-          className={menuStyles}
-          role="listbox"
-          aria-multiselectable="false"
-        >
+        <div className={menuStyles} role="listbox" aria-multiselectable="false">
           {searchable && (
             <div className="px-3 py-2">
               <input
@@ -223,7 +229,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               />
             </div>
           )}
-          
+
           {filteredOptions.length > 0 ? (
             filteredOptions.map((option) => (
               <div
@@ -241,7 +247,14 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                   renderOption(option)
                 ) : (
                   <span className="flex items-center gap-2">
-                    {option.icon && <span className={iconStyles}>{option.icon}</span>}
+                    {option.icon && (
+                      <span className={iconStyles}>{option.icon}</span>
+                    )}
+                    {option.Icon && (
+                      <span className={iconStyles}>
+                        <option.Icon />
+                      </span>
+                    )}
                     <span>{option.label}</span>
                   </span>
                 )}
@@ -258,6 +271,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   );
 });
 
-Dropdown.displayName = 'Dropdown';
+Dropdown.displayName = "Dropdown";
 
 export default Dropdown;
