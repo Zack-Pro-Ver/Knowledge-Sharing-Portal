@@ -1,19 +1,22 @@
-export type DropdownVariant = 'contained' | 'outlined' | 'text';
-export type DropdownSize = 'small' | 'medium' | 'large';
-export type DropdownColor = 
-  | 'primary' 
-  | 'secondary' 
-  | 'error' 
-  | 'warning' 
-  | 'info' 
-  | 'success'
-  | 'inherit';
+import type { RemixiconComponentType } from "@remixicon/react";
+
+export type DropdownVariant = "contained" | "outlined" | "text";
+export type DropdownSize = "small" | "medium" | "large";
+export type DropdownColor =
+  | "primary"
+  | "secondary"
+  | "error"
+  | "warning"
+  | "info"
+  | "success"
+  | "inherit";
 
 export interface DropdownOption {
   label: string;
   value: string | number;
   disabled?: boolean;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | RemixiconComponentType;
+  Icon?: RemixiconComponentType; // For compatibility with existing code
 }
 
 export interface DropdownProps {
