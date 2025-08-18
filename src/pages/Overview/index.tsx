@@ -6,7 +6,7 @@ export const Overview = () => {
     <>
       <Header
         buttonText="Add Question"
-        description="Here's what's happening with your account"
+        // description="Here's what's happening with your account"
         icon={<RiQuestionLine size="medium" />}
         title="Welcome back, John!
 "
