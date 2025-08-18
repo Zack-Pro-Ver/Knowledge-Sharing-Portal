@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { BellIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { IconButton, IconDropdown } from "../../elements";
+import "remixicon/fonts/remixicon.css";
+
 
 function Header() {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -40,7 +41,7 @@ function Header() {
           {/* Right Section */}
           <div className="flex items-center">
             <IconButton onClick={() => setIsNotificationOpen(!isNotificationOpen)}>
-              <BellIcon className="h-6 w-5 text-gray-900" />
+              <i className="ri-notification-3-line text-xl text-gray-900"></i>
             </IconButton>
             <IconDropdown
               isOpen={isNotificationOpen}
@@ -49,7 +50,7 @@ function Header() {
               items={notifications}
             />
             <IconButton onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
-              <UserCircleIcon className="h-6 w-5 text-gray-900" />
+              <i className="ri-user-line text-xl text-gray-900"></i>
             </IconButton>
             <IconDropdown
               isOpen={isUserMenuOpen}
