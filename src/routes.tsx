@@ -1,61 +1,71 @@
-import { createBrowserRouter } from "react-router-dom";
-import Overview from "./pages/Overview/Overview";
-import Badges from "./pages/Badges";
-import MyAnswers from "./pages/MyAnswers";
-import MyQuestions from "./pages/MyQuestions";
-import MyProfile from "./pages/MyProfile";
-import Notification from "./pages/Notifications";
-import ContentManagement from "./pages/AdminControl/ContentManagement";
-import ModerationQueue from "./pages/AdminControl/ModerationQueue";
-import UserManagement from "./pages/AdminControl/UserManagement";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { Overview } from "./pages/Overview";
+import { Badges } from "./pages/Badges";
+import { MyAnswers } from "./pages/MyAnswers";
+import { MyQuestions } from "./pages/MyQuestions";
+import { MyProfile } from "./pages/MyProfile";
+import { Notification } from "./pages/Notifications";
+import { ContentManagement } from "./pages/AdminControl/ContentManagement";
+import { ModerationQueue } from "./pages/AdminControl/ModerationQueue";
+import { UserManagement } from "./pages/AdminControl/UserManagement";
+import Sidebar from "./components/Sidebar";
+import MainLayout from "./layouts/MainLayout";
+import { useNavigate } from "react-router-dom";
+
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        element: <Overview />,
+        element: <Navigate to="overview" />,
       },
       {
         path: "overview",
         element: <Overview />,
       },
       {
-        path:"padges",
+        path:"badges",
         element: <Badges />,
       },
       {
-        path:"myanswers",
+        path:"my-answers",
         element: <MyAnswers />,
       },
       {
-        path:"myquestions",
+        path:"my-questions",
         element: <MyQuestions />,
       },
       {
-        path:"myprofile",
+        path:"my-profile",
         element: <MyProfile />,
       },
       { 
         path:"notifications",
         element: <Notification />,
-      },
+      }, 
       {
-        path:"admincontrol/contentmanagement",
-        element: <ContentManagement />,
+        path: "admin-control",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="content-management" />,
+          },
+          {
+            path: "content-management",
+            element: <ContentManagement />,
+          },
+          {
+            path: "moderation-queue",
+            element: <ModerationQueue />,
+          },
+          {
+            path: "user-management",
+            element: <UserManagement />,
+          },
+        ],
       },
-      {
-        path:"admincontrol/moderationqueue",
-        element: <ModerationQueue />,
-      
-      },
-      {
-        path:"admincontrol/usermanagement",
-        element: <UserManagement />,
-      },
-      
-
-      
     ],
   },
 ]);
