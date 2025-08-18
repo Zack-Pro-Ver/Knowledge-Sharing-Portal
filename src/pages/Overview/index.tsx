@@ -1,22 +1,16 @@
 import { RiQuestionLine } from "@remixicon/react";
-import Button from "../../elements/Button/index";
+import { Header } from "../../components/Header";
 
 export const Overview = () => {
   return (
     <>
-      <div className="flex flex-row justify-between p-4">
-        <div>
-          <p className="text-2xl font-bold ">Welcome Back, John!</p>
-          <p className="text-base font-normal">
-            Heres what happening with your account
-          </p>
-        </div>
-
-        <Button startIcon={<RiQuestionLine size="medium" />}>
-          Add Question
-        </Button>
-      </div>
-      <div></div>
+      <Header
+        buttonText="Add Question"
+        description="Here's what's happening with your account"
+        icon={<RiQuestionLine size="medium" />}
+        title="Welcome back, John!
+"
+      />
     </>
   );
 };
