@@ -15,8 +15,8 @@ export interface DropdownOption {
   label: string;
   value: string | number;
   disabled?: boolean;
-  icon?: React.ReactNode | RemixiconComponentType;
-  Icon?: RemixiconComponentType; // For compatibility with existing code
+  icon?: React.ReactNode;
+  Icon?: RemixiconComponentType;
 }
 
 export interface DropdownProps {

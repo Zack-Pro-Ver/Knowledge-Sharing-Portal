@@ -3,7 +3,11 @@ import { IconButton, IconDropdown, Dropdown, Avatar } from "../../elements";
 import "remixicon/fonts/remixicon.css";
 import type { DropdownOption } from "../../elements/Dropdown/Dropdown.types";
 
-function Header() {
+export interface HeaderProps {
+  // Add props as needed
+}
+
+export const Header: React.FC<HeaderProps> = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [userMenuValue, setUserMenuValue] = useState(null);
 
@@ -53,7 +57,7 @@ function Header() {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full dark:bg-gray-800 dark:border-gray-700">
+    <nav className="fixed top-0 z-50 w-full dark:bg-gray-800 border-gray-200 bg-white border-b-1">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           {/* Left Section */}
@@ -120,6 +124,6 @@ function Header() {
       </div>
     </nav>
   );
-}
+};
 
 export default Header;
