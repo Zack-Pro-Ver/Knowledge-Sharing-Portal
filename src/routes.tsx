@@ -26,25 +26,25 @@ export const router = createBrowserRouter([
         element: <Overview />,
       },
       {
-        path: "badges",
+        path:"badges",
         element: <Badges />,
       },
       {
-        path: "my-answers",
+        path:"my-answers",
         element: <MyAnswers />,
       },
       {
-        path: "my-questions",
+        path:"my-questions",
         element: <MyQuestions />,
       },
       {
-        path: "my-profile",
+        path:"my-profile",
         element: <MyProfile />,
       },
-      {
-        path: "notifications",
+      { 
+        path:"notifications",
         element: <Notification />,
-      },
+      }, 
       {
         path: "admin-control",
         children: [
