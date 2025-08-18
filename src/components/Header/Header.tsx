@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { IconButton, IconDropdown } from "../../elements";
+import { IconButton, IconDropdown, Avatar } from "../../elements";
 import "remixicon/fonts/remixicon.css";
-
 
 function Header() {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+  // Notification items (no icons needed, just text)
   const notifications = [
     { label: "Your question received a new answer", action: () => console.log("Notification clicked") },
     { label: "Your answer was accepted", action: () => console.log("Notification clicked") },
@@ -14,10 +14,11 @@ function Header() {
     { label: "Someone commented on your answer", action: () => console.log("Notification clicked") },
   ];
 
+  // User menu options, now with icons (Remixicon)
   const userOptions = [
-    { label: "View Profile", action: () => console.log("View Profile") },
-    { label: "Settings", action: () => console.log("Settings") },
-    { label: "Logout", action: () => console.log("Logout") },
+    { label: "View Profile", icon: <i className="ri-user-line mr-2" />, action: () => console.log("View Profile") },
+    { label: "Settings", icon: <i className="ri-settings-3-line mr-2" />, action: () => console.log("Settings") },
+    { label: "Logout", icon: <i className="ri-logout-box-r-line mr-2" />, action: () => console.log("Logout") },
   ];
 
   return (
@@ -39,25 +40,49 @@ function Header() {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center">
-            <IconButton onClick={() => setIsNotificationOpen(!isNotificationOpen)}>
-              <i className="ri-notification-3-line text-xl text-gray-900"></i>
-            </IconButton>
-            <IconDropdown
-              isOpen={isNotificationOpen}
-              onClose={() => setIsNotificationOpen(false)}
-              title="Notifications"
-              items={notifications}
-            />
-            <IconButton onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
-              <i className="ri-user-line text-xl text-gray-900"></i>
-            </IconButton>
-            <IconDropdown
-              isOpen={isUserMenuOpen}
-              onClose={() => setIsUserMenuOpen(false)}
-              title="User Menu"
-              items={userOptions}
-            />
+          <div className="flex items-center gap-2">
+            {/* Notification Icon + Dropdown */}
+            <div className="relative">
+              <IconButton onClick={() => setIsNotificationOpen(!isNotificationOpen)}>
+                <i className="ri-notification-3-line text-xl text-gray-900"></i>
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-red-600 text-white text-xs font-semibold flex items-center justify-center">
+                  2
+                </span>
+              </IconButton>
+              <IconDropdown
+                isOpen={isNotificationOpen}
+                onClose={() => setIsNotificationOpen(false)}
+                title="Notifications"
+                items={notifications}
+                variant="notification"
+              />
+            </div>
+            {/* User Avatar + Name as button + Dropdown */}
+            <div className="relative">
+              <button
+                className="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-gray-100 transition"
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+              >
+                <Avatar
+                  size="small"
+                  variant="circular"
+                  backgroundColor="#8E6EF4"
+                  textColor="#fff"
+                >
+                  JD
+                </Avatar>
+                <span className="font-medium text-gray-900">John Doe</span>
+                <i className="ri-arrow-down-s-line text-lg text-gray-500"></i>
+              </button>
+              <IconDropdown
+                isOpen={isUserMenuOpen}
+                onClose={() => setIsUserMenuOpen(false)}
+                title=""
+                items={userOptions}
+                // Ensure IconDropdown renders the icon! See note below.
+                variant="iconWithName"
+              />
+            </div>
           </div>
         </div>
       </div>
