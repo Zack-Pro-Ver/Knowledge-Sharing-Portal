@@ -28,4 +28,3 @@ const Stack: React.FC<StackProps> = ({
 };
 
 export default Stack;
-uhuh;
