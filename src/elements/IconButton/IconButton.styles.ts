@@ -21,11 +21,11 @@ export const getIconButtonStyles = (
     'transition-all',
     'duration-200',
     'ease-in-out',
-    'focus:outline-none',
-    'focus-visible:ring-2',
-    'focus-visible:ring-offset-2',
-    'disabled:cursor-not-allowed',
-    'disabled:opacity-60',
+    // 'focus:outline-none',
+    // 'focus-visible:ring-2',
+    // 'focus-visible:ring-offset-2',
+    // 'disabled:cursor-not-allowed',
+    // 'disabled:opacity-60',
   ];
 
   // Size classes

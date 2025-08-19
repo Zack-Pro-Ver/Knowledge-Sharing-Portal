@@ -6,8 +6,8 @@ export interface DropdownItem {
   label: string;
   icon: ReactNode;
   onClick: () => void;
-  description?: string; // For notification type, e.g. "Your question received a new answer"
-  timestamp?: string; // For notification type, e.g. "2 minutes ago"
+  description?: string; 
+  timestamp?: string; 
 }
 
 export interface DropdownProps {
