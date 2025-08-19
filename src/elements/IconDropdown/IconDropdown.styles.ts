@@ -36,7 +36,7 @@ export const getDropdownButtonStyles = (
       "hover:bg-gray-50",
       "focus-visible:ring-indigo-500",
       "focus-visible:ring-offset-gray-100",
-      "px-4",
+      "px-2",
       "py-2",
       "text-sm",
     ],
@@ -64,7 +64,7 @@ export const getDropdownItemStyles = (
     "flex",
     "items-center",
     "w-full",
-    "px-4",
+    "px-2",
     "py-2",
     "text-sm",
     "text-gray-700",
@@ -88,7 +88,7 @@ export const getDropdownItemStyles = (
 export const getDropdownMenuStyles = () => {
   return [
     "absolute",
-    "right-0",
+    "right-0", 
     "z-10",
     "mt-2",
     "w-56",
