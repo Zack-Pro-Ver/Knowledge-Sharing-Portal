@@ -9,260 +9,110 @@ import {
   getLoadingStyles,
 } from "./Dropdown.styles";
 
-const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
-  const {
-    options,
-    value,
-    onChange,
-    placeholder = "Select an option",
-    variant = "outlined",
-    size = "medium",
-    color = "primary",
-    disabled = false,
-    loading = false,
-    fullWidth = false,
-    searchable = false,
-    clearable = false,
-    disableElevation = false,
-    renderOption,
-    noOptionsText = "No options available",
-    className = "",
-    ...otherProps
-  } = props;
-
+const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
+  options,
+  value,
+  onChange,
+  placeholder = "Select an option",
+  variant = "outlined",
+  size = "medium",
+  color = "primary",
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  searchable = false,
+  clearable = false,
+  disableElevation = false,
+  renderOption,
+  noOptionsText = "No options available",
+  className = "",
+  ...otherProps
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const dropdownStyles = getDropdownStyles(
-    variant,
-    size,
-    color,
-    disabled,
-    fullWidth,
-    disableElevation
-  );
-
+  const dropdownStyles = getDropdownStyles(variant, size, color, disabled, fullWidth, disableElevation);
   const menuStyles = getMenuStyles();
   const iconStyles = getIconStyles(size);
   const arrowStyles = getArrowStyles();
   const loadingStyles = getLoadingStyles();
 
-  const selectedOption = options.find((option) => option.value === value);
-  const filteredOptions = searchable
-    ? options.filter((option) =>
-        option.label.toLowerCase().includes(searchValue.toLowerCase())
-      )
-    : options;
+  const selected = options.find(o => o.value === value);
+  const filtered = searchable ? options.filter(o => o.label.toLowerCase().includes(searchValue.toLowerCase())) : options;
+
+  const Icon = (opt: DropdownOption) =>
+    opt.icon ? <span className={iconStyles}>{opt.icon}</span> :
+    opt.Icon ? <span className={iconStyles}><opt.Icon /></span> : null;
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    const outside = (e: MouseEvent) => dropdownRef.current && !dropdownRef.current.contains(e.target as Node) && setIsOpen(false);
+    isOpen && document.addEventListener("mousedown", outside);
+    return () => document.removeEventListener("mousedown", outside);
   }, [isOpen]);
 
-  useEffect(() => {
-    if (isOpen && searchable && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [isOpen, searchable]);
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (disabled || loading) return;
-
-    switch (event.key) {
-      case "Enter":
-      case " ":
-        event.preventDefault();
-        setIsOpen(!isOpen);
-        break;
-      case "Escape":
-        setIsOpen(false);
-        break;
-      case "ArrowDown":
-        event.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        }
-        break;
-    }
-  };
-
-  const handleOptionClick = (option: DropdownOption) => {
-    if (option.disabled) return;
-
-    onChange?.(option.value);
-    setIsOpen(false);
-    setSearchValue("");
-  };
-
-  const handleClear = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    onChange?.(null as any);
-  };
+  useEffect(() => { isOpen && searchable && searchRef.current?.focus(); }, [isOpen, searchable]);
 
   return (
-    <div
-      ref={dropdownRef}
-      className={`relative ${fullWidth ? "w-full" : ""} ${className}`}
-      {...otherProps}
-    >
+    <div ref={dropdownRef} className={`relative ${fullWidth ? "w-full" : ""} ${className}`} {...otherProps}>
       <button
         type="button"
         className={`${dropdownStyles} ${isOpen ? "ring-2 ring-offset-2" : ""}`}
         disabled={disabled || loading}
         onClick={() => !disabled && !loading && setIsOpen(!isOpen)}
-        onKeyDown={handleKeyDown}
+        onKeyDown={e => {
+          if (disabled || loading) return;
+          if (["Enter", " "].includes(e.key)) { e.preventDefault(); setIsOpen(!isOpen); }
+          if (e.key === "Escape") setIsOpen(false);
+          if (e.key === "ArrowDown") { e.preventDefault(); !isOpen && setIsOpen(true); }
+        }}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-disabled={disabled || loading}
       >
         <span className="flex items-center justify-between w-full">
           <span className="flex items-center gap-2">
-            {selectedOption?.icon && (
-              <span className={iconStyles}>{selectedOption.icon}</span>
-            )}
-            {selectedOption?.Icon && (
-              <span className={iconStyles}>
-                <selectedOption.Icon />
-              </span>
-            )}
-            <span className="truncate">
-              {selectedOption?.label || placeholder}
-            </span>
+            {selected && Icon(selected)}
+            <span className="truncate">{selected ? selected.label : placeholder}</span>
           </span>
 
           <span className="flex items-center gap-2">
-            {clearable && selectedOption && !disabled && !loading && (
-              <button
-                type="button"
-                className="hover:bg-gray-100 rounded p-0.5"
-                onClick={handleClear}
-                aria-label="Clear selection"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+            {clearable && selected && !disabled && !loading && (
+              <button type="button" className="hover:bg-gray-100 rounded p-0.5" onClick={e => { e.stopPropagation(); onChange?.(null as any); }}>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             )}
-
             {loading && (
               <span className={loadingStyles}>
-                <svg
-                  className={`${iconStyles} animate-spin`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
+                <svg className={`${iconStyles} animate-spin`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
                 </svg>
               </span>
             )}
-
-            <svg
-              className={`${arrowStyles} ${isOpen ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
+            <svg className={`${arrowStyles} ${isOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
             </svg>
           </span>
         </span>
       </button>
 
       {isOpen && (
-        <div className={menuStyles} role="listbox" aria-multiselectable="false">
+        <div className={menuStyles} role="listbox">
           {searchable && (
             <div className="px-3 py-2">
-              <input
-                ref={searchRef}
-                type="text"
-                className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Search..."
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onClick={(e) => e.stopPropagation()}
-              />
+              <input ref={searchRef} type="text" className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Search..." value={searchValue} onChange={e => setSearchValue(e.target.value)} onClick={e => e.stopPropagation()} />
             </div>
           )}
-
-          {filteredOptions.length > 0 ? (
-            filteredOptions.map((option) => (
-              <div
-                key={option.value}
-                className={getOptionStyles(
-                  option.disabled || false,
-                  option.value === value
-                )}
-                onClick={() => handleOptionClick(option)}
-                role="option"
-                aria-selected={option.value === value}
-                aria-disabled={option.disabled}
-              >
-                {renderOption ? (
-                  renderOption(option)
-                ) : (
-                  <span className="flex items-center gap-2">
-                    {option.icon && (
-                      <span className={iconStyles}>{option.icon}</span>
-                    )}
-                    {option.Icon && (
-                      <span className={iconStyles}>
-                        <option.Icon />
-                      </span>
-                    )}
-                    <span>{option.label}</span>
-                  </span>
-                )}
-              </div>
-            ))
-          ) : (
-            <div className="px-4 py-2 text-sm text-gray-500">
-              {noOptionsText}
+          {filtered.length ? filtered.map(o => (
+            <div key={o.value}
+              className={getOptionStyles(o.disabled || false, o.value === value)}
+              onClick={() => !o.disabled && (onChange?.(o.value), setIsOpen(false), setSearchValue(""))}
+              role="option" aria-selected={o.value === value} aria-disabled={o.disabled}>
+              {renderOption ? renderOption(o) : <span className="flex items-center gap-2">{Icon(o)}<span>{o.label}</span></span>}
             </div>
-          )}
+          )) : <div className="px-4 py-2 text-sm text-gray-500">{noOptionsText}</div>}
         </div>
       )}
     </div>
@@ -270,5 +120,4 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 });
 
 Dropdown.displayName = "Dropdown";
-
 export default Dropdown;

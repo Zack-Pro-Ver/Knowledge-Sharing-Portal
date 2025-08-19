@@ -1,90 +1,35 @@
-import React, { useState, useRef, useEffect } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import type { ReactNode } from "react";
-import { getDropdownButtonStyles, getDropdownMenuStyles, getDropdownItemStyles } from "./IconDropdown.styles";
-import type { DropdownProps } from "./IconDropdown.types";
+import React from 'react';
 
-const Dropdown: React.FC<DropdownProps> = ({ buttonLabel, buttonIcon, items, variant, className = "" }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+interface IconDropdownProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  items: Array<{ label: string; action: () => void }>;
+}
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+const IconDropdown: React.FC<IconDropdownProps> = ({ isOpen, onClose, title, items }) => {
+  if (!isOpen) return null;
 
   return (
-    <div className={`relative inline-block text-left ${className}`} ref={dropdownRef}>
-      <div className={getDropdownButtonStyles()}>
-        {buttonIcon && <span className="mr-2 flex items-center">{buttonIcon}</span>}
-        {buttonLabel && <span>{buttonLabel}</span>}
-        <button
-          type="button"
-          onClick={toggleDropdown}
-          aria-haspopup="true"
-          aria-expanded={isOpen}
-          className="ml-2 focus:outline-none"
-        >
-          <ChevronDownIcon className="h-5 w-5" />
+    <div className="absolute right-8 top-full mt-1 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50 pl-2">
+      <div className="p-2">
+        <h3 className="font-semibold text-gray-700">{title}</h3>
+        <ul className="mt-2">
+          {items.map((item, index) => (
+            <li key={index} className="py-1 px-2 hover:bg-gray-100 cursor-pointer" onClick={item.action}>
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="border-t border-gray-300" />
+      <div className="p-2">
+        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          Close
         </button>
       </div>
-
-      {isOpen && (
-        <div className={getDropdownMenuStyles()} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-          {variant === "iconWithName" &&
-            items.map((item: any, index: any) => (
-              <button
-                key={index}
-                className={getDropdownItemStyles()}
-                onClick={() => {
-                  item.onClick();
-                  setIsOpen(false);
-                }}
-                role="menuitem"
-                type="button"
-              >
-                <span className="mr-3 flex items-center">{item.icon}</span>
-                {item.label}
-              </button>
-            ))}
-
-          {variant === "notification" &&
-            items.map((item: any, index: any) => (
-              <button
-                key={index}
-                className="w-full px-4 py-3 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
-                onClick={() => {
-                  item.onClick();
-                  setIsOpen(false);
-                }}
-                role="menuitem"
-                type="button"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-gray-900">{item.label}</span>
-                  {item.description && (
-                    <span className="text-xs text-gray-500">{item.description}</span>
-                  )}
-                  {item.timestamp && (
-                    <span className="text-xs text-gray-400">{item.timestamp}</span>
-                  )}
-                </div>
-              </button>
-            ))}
-        </div>
-      )}
     </div>
   );
 };
 
-export default Dropdown;
+export default IconDropdown;
