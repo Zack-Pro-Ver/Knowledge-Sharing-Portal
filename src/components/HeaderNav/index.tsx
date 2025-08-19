@@ -2,6 +2,9 @@ import { useState } from "react";
 import { IconButton, IconDropdown, Dropdown, Avatar } from "../../elements";
 import "remixicon/fonts/remixicon.css";
 import type { DropdownOption } from "../../elements/Dropdown/Dropdown.types";
+import { HeaderConstants } from "./Header.constant";
+import { useNavigate } from "react-router-dom";
+
 
 export interface HeaderProps {
   // Add props as needed
@@ -11,50 +14,28 @@ export const Header: React.FC<HeaderProps> = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [userMenuValue, setUserMenuValue] = useState(null);
 
-  // Notifications for bell menu
-  const notifications = [
-    { label: "Your question received a new answer", action: () => console.log("Notification clicked") },
-    { label: "Your answer was accepted", action: () => console.log("Notification clicked") },
-    { label: "New badge earned: Helpful Contributor", action: () => console.log("Notification clicked") },
-    { label: "Someone commented on your answer", action: () => console.log("Notification clicked") },
-  ];
+  const notifications = HeaderConstants.notifications;
+  const userMenuOptions = HeaderConstants.userMenuOptions;
 
-  // User menu options
-  const userMenuOptions = [
-    {
-      label: "View Profile",
-      value: "profile",
-      icon: <i className="ri-user-line mr-2" />,
-    },
-    {
-      label: "Settings",
-      value: "settings",
-      icon: <i className="ri-settings-3-line mr-2" />,
-    },
-    {
-      label: "Logout",
-      value: "logout",
-      icon: <i className="ri-logout-box-r-line mr-2" />,
-    },
-  ];
+  
 
   // For rendering icon+label in the user Dropdown
   const renderUserOption = (option : DropdownOption) => (
     <span className="flex items-center">{option.icon}{option.label}</span>
   );
 
-  // User menu selection action
-  const onUserMenuChange = (value: string | number | null) => {
-    setUserMenuValue(null); // keeps dropdown as menu
-    // handle menu selection:
-    if (value === "profile") {
-      // Navigate to profile
-    } else if (value === "settings") {
-      // Open settings
-    } else if (value === "logout") {
-      // Logout
-    }
-  };
+  const navigate = useNavigate();
+
+const onUserMenuChange = (value: string | null) => {
+  setUserMenuValue(null);
+  if (value === "profile") {
+    navigate("/profile");
+  } else if (value === "settings") {
+    navigate("/settings");
+  } else if (value === "logout") {
+    navigate("/Overview");
+  }
+};
 
   return (
     <nav className="fixed top-0 z-50 w-full dark:bg-gray-800 border-gray-200 bg-white border-b-1">
@@ -92,7 +73,7 @@ export const Header: React.FC<HeaderProps> = () => {
                 // variant="notification" // if needed by your prop-types
               />
             </div>
-            {/* User Avatar + Name as Dropdown */}
+            {/* // User Avatar + Name as Dropdown // */}
             <div className="relative min-w-[150px]">
               <Dropdown
                 options={userMenuOptions}
