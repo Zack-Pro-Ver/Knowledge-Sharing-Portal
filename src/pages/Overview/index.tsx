@@ -1,6 +1,5 @@
 import { RiQuestionLine } from "@remixicon/react";
 import { Header } from "../../components/Header";
-import { CardStats } from "./CardStats";
 
 export const Overview = () => {
   return (
@@ -12,7 +11,6 @@ export const Overview = () => {
         title="Welcome back, John!
 "
       />
-      <CardStats />
     </>
   );
 };
