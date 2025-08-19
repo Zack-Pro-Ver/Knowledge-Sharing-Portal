@@ -67,10 +67,8 @@ const onUserMenuChange = (value: string | null) => {
               </IconButton>
               <IconDropdown
                 isOpen={isNotificationOpen}
-                onClose={() => setIsNotificationOpen(false)}
-                title="Notifications"
-                items={notifications}
-                // variant="notification" // if needed by your prop-types
+                title=""
+                items={}
               />
             </div>
             {/* // User Avatar + Name as Dropdown // */}
