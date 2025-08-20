@@ -72,18 +72,3 @@ export const Clickable: Story = {
     onClick: () => alert("Chip clicked!"),
   },
 };
-
-export const Disabled: Story = {
-  args: {
-    label: "Disabled",
-    disabled: true,
-  },
-};
-
-export const WithDeleteIcon: Story = {
-  args: {
-    label: "Custom Delete",
-    onDelete: () => alert("Deleted!"),
-    deleteIcon: "✕",
-  },
-};
