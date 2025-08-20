@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import Image from "./index";
-import type { ImageProps } from "./Image.types";
+import Image from ".";
 
 const meta: Meta<typeof Image> = {
   title: "Elements/Image",
   component: Image,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -26,6 +27,9 @@ export const WithCustomSize: Story = {
     alt: "Custom sized image",
     width: 400,
     height: 300,
+  },
+  parameters: {
+    layout: "centered",
   },
 };
 
