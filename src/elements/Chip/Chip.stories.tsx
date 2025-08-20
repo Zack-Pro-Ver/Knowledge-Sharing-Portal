@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import Chip from "./index";
-import type { ChipProps } from "./Chip.types";
+import Chip from ".";
 
 const meta: Meta<typeof Chip> = {
   title: "Elements/Chip",
@@ -10,23 +8,6 @@ const meta: Meta<typeof Chip> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "outlined", "filled"],
-    },
-    size: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    color: {
-      control: "select",
-      options: ["primary", "secondary", "error", "warning", "info", "success"],
-    },
-    disabled: {
-      control: "boolean",
-    },
-  },
 };
 
 export default meta;

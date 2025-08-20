@@ -6,6 +6,10 @@ import type { IconDropdownProps } from "./IconDropdown.types";
 const meta: Meta<typeof IconDropdown> = {
   title: "Elements/IconDropdown",
   component: IconDropdown,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -13,19 +17,37 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    options: [
-      { label: "Option 1", value: "1" },
-      { label: "Option 2", value: "2" },
-      { label: "Option 3", value: "3" },
+    items: [
+      {
+        label: "Option 1",
+        icon: undefined,
+        onClick: function (): void {
+          throw new Error("Function not implemented.");
+        },
+      },
+      {
+        label: "Option 2",
+        icon: undefined,
+        onClick: function (): void {
+          throw new Error("Function not implemented.");
+        },
+      },
+      {
+        label: "Option 3",
+        icon: undefined,
+        onClick: function (): void {
+          throw new Error("Function not implemented.");
+        },
+      },
     ],
-    placeholder: "Select an option",
+    buttonLabel: "Select an option",
   },
 };
 
 export const WithLabel: Story = {
   args: {
     label: "Choose Action",
-    options: [
+    items: [
       { label: "Edit", value: "edit" },
       { label: "Delete", value: "delete" },
       { label: "Share", value: "share" },
@@ -36,7 +58,7 @@ export const WithLabel: Story = {
 
 export const Disabled: Story = {
   args: {
-    options: [
+    items: [
       { label: "Active", value: "active" },
       { label: "Inactive", value: "inactive" },
     ],
@@ -50,7 +72,7 @@ export const Sizes: Story = {
     <div className="flex flex-col gap-4">
       <IconDropdown
         size="small"
-        options={[
+        items={[
           { label: "Small", value: "small" },
           { label: "Medium", value: "medium" },
           { label: "Large", value: "large" },
@@ -59,7 +81,7 @@ export const Sizes: Story = {
       />
       <IconDropdown
         size="medium"
-        options={[
+        items={[
           { label: "Small", value: "small" },
           { label: "Medium", value: "medium" },
           { label: "Large", value: "large" },
@@ -68,7 +90,7 @@ export const Sizes: Story = {
       />
       <IconDropdown
         size="large"
-        options={[
+        items={[
           { label: "Small", value: "small" },
           { label: "Medium", value: "medium" },
           { label: "Large", value: "large" },
