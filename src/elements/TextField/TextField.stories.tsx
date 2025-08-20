@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import TextField from "./index";
-import type { TextFieldProps } from "./TextField.types";
+import TextField from ".";
 
 const meta: Meta<typeof TextField> = {
   title: "Elements/TextField",
   component: TextField,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -69,15 +71,6 @@ export const HelperText: Story = {
     label: "Password",
     placeholder: "Enter password",
     helperText: "Must be at least 8 characters",
-  },
-};
-
-export const Multiline: Story = {
-  args: {
-    label: "Description",
-    multiline: true,
-    rows: 4,
-    placeholder: "Enter description...",
   },
 };
 
