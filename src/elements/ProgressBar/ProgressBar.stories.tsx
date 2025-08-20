@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import ProgressBar from "./index";
-import type { ProgressBarProps } from "./ProgressBar.types";
+import ProgressBar from ".";
 
 const meta: Meta<typeof ProgressBar> = {
   title: "Elements/ProgressBar",
   component: ProgressBar,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
