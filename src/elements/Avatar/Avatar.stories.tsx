@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Avatar from ".";
-import type { AvatarProps } from "./Avatar.types";
 
 const meta: Meta<typeof Avatar> = {
   title: "Elements/Avatar",
   component: Avatar,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -18,7 +20,7 @@ export const Default: Story = {
 
 export const Image: Story = {
   args: {
-    src: "https://via.placeholder.com/150",
+    src: "https://c8.alamy.com/comp/2PWERD5/student-avatar-illustration-simple-cartoon-user-portrait-user-profile-icon-youth-avatar-vector-illustration-2PWERD5.jpg",
     alt: "User Avatar",
   },
 };
@@ -29,37 +31,22 @@ export const Letter: Story = {
   },
 };
 
-export const Sizes: Story = {
+export const SizesAndVariants: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Avatar size="small">S</Avatar>
-      <Avatar size="medium">M</Avatar>
-      <Avatar size="large">L</Avatar>
-    </div>
-  ),
-};
-
-export const Variants: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar variant="circular">C</Avatar>
-      <Avatar variant="rounded">R</Avatar>
-      <Avatar variant="square">S</Avatar>
-    </div>
-  ),
-};
-
-export const CustomColors: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar backgroundColor="#3b82f6" textColor="white">
-        B
+      <Avatar
+        size="small"
+        variant="circular"
+        backgroundColor="#3b82f6"
+        textColor="white"
+      >
+        S
       </Avatar>
-      <Avatar backgroundColor="#ef4444" textColor="white">
-        R
+      <Avatar size="medium" variant="rounded">
+        M
       </Avatar>
-      <Avatar backgroundColor="#10b981" textColor="white">
-        G
+      <Avatar size="large" variant="square">
+        L
       </Avatar>
     </div>
   ),
