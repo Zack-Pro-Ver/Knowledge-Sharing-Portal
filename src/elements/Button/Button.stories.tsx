@@ -1,46 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import Button from "./index";
-import type { ButtonProps } from "./Button.types";
 
 const meta: Meta<typeof Button> = {
   title: "Elements/Button",
   component: Button,
-  // parameters: {
-  //   layout: "centered",
-  // },
-  // tags: ["autodocs"],
-  // argTypes: {
-  //   variant: {
-  //     control: "select",
-  //     options: ["contained", "outlined", "text"],
-  //   },
-  //   size: {
-  //     control: "select",
-  //     options: ["small", "medium", "large"],
-  //   },
-  //   color: {
-  //     control: "select",
-  //     options: [
-  //       "primary",
-  //       "secondary",
-  //       "error",
-  //       "warning",
-  //       "info",
-  //       "success",
-  //       "inherit",
-  //     ],
-  //   },
-  //   disabled: {
-  //     control: "boolean",
-  //   },
-  //   loading: {
-  //     control: "boolean",
-  //   },
-  //   fullWidth: {
-  //     control: "boolean",
-  //   },
-  // },
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -73,37 +40,21 @@ export const Text: Story = {
   },
 };
 
-export const Colors: Story = {
+export const ColorsAndSizesAndIcons: Story = {
   render: () => (
     <div className="flex flex-wrap gap-4">
-      <Button color="primary">Primary</Button>
-      <Button color="secondary">Secondary</Button>
-      <Button color="error">Error</Button>
+      <Button color="primary" size="small" startIcon="🚀">
+        Primary
+      </Button>
+      <Button color="secondary" size="medium" endIcon="➡️">
+        Secondary
+      </Button>
+      <Button color="error" size="large">
+        Error
+      </Button>
       <Button color="warning">Warning</Button>
       <Button color="info">Info</Button>
       <Button color="success">Success</Button>
-    </div>
-  ),
-};
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Button size="small">Small</Button>
-      <Button size="medium">Medium</Button>
-      <Button size="large">Large</Button>
-    </div>
-  ),
-};
-
-export const WithIcons: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-4">
-      <Button startIcon="🚀">Start Icon</Button>
-      <Button endIcon="➡️">End Icon</Button>
-      <Button startIcon="💾" endIcon="✓">
-        Both Icons
-      </Button>
     </div>
   ),
 };
