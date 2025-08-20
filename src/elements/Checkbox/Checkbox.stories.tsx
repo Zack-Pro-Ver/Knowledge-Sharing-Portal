@@ -1,45 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import Checkbox from "./index";
-import type { CheckboxProps } from "./Checkbox.types";
+import Checkbox from ".";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Elements/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    checked: {
-      control: "boolean",
-    },
-    disabled: {
-      control: "boolean",
-    },
-    indeterminate: {
-      control: "boolean",
-    },
-    checkboxSize: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    color: {
-      control: "select",
-      options: [
-        "primary",
-        "secondary",
-        "error",
-        "warning",
-        "info",
-        "success",
-        "default",
-      ],
-    },
-    labelPlacement: {
-      control: "select",
-      options: ["end", "start", "top", "bottom"],
-    },
   },
 };
 
@@ -66,12 +33,13 @@ export const Unchecked: Story = {
   },
 };
 
-export const Indeterminate: Story = {
-  args: {
-    indeterminate: true,
-    label: "Indeterminate Checkbox",
-  },
-};
+// Todo: Will work on this later
+// export const Indeterminate: Story = {
+//   args: {
+//     indeterminate: true,
+//     label: "Indeterminate Checkbox",
+//   },
+// };
 
 export const Disabled: Story = {
   args: {
@@ -94,19 +62,6 @@ export const Sizes: Story = {
       <Checkbox checkboxSize="small" label="Small Checkbox" />
       <Checkbox checkboxSize="medium" label="Medium Checkbox" />
       <Checkbox checkboxSize="large" label="Large Checkbox" />
-    </div>
-  ),
-};
-
-export const Colors: Story = {
-  render: () => (
-    <div className="space-y-4">
-      <Checkbox color="primary" label="Primary" />
-      <Checkbox color="secondary" label="Secondary" />
-      <Checkbox color="error" label="Error" />
-      <Checkbox color="warning" label="Warning" />
-      <Checkbox color="info" label="Info" />
-      <Checkbox color="success" label="Success" />
     </div>
   ),
 };
