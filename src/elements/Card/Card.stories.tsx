@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Card from "./index";
-import type { CardProps } from "./Card.types";
+import Card from ".";
 
 const meta: Meta<typeof Card> = {
   title: "Elements/Card",
   component: Card,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -52,7 +54,9 @@ export const Raised: Story = {
     children: (
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">Raised Card</h3>
-        <p className="text-gray-600">This card has a raised effect.</p>
+        <p className="text-gray-600">
+          This card has a raised effect (hover effect kind).
+        </p>
       </div>
     ),
   },
