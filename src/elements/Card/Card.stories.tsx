@@ -5,26 +5,6 @@ import type { CardProps } from "./Card.types";
 const meta: Meta<typeof Card> = {
   title: "Elements/Card",
   component: Card,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["elevation", "outlined"],
-    },
-    size: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    elevation: {
-      control: { type: "range", min: 0, max: 24, step: 1 },
-    },
-    raised: {
-      control: "boolean",
-    },
-  },
 };
 
 export default meta;

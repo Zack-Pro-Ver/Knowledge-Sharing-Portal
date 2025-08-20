@@ -6,41 +6,41 @@ import type { ButtonProps } from "./Button.types";
 const meta: Meta<typeof Button> = {
   title: "Elements/Button",
   component: Button,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["contained", "outlined", "text"],
-    },
-    size: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    color: {
-      control: "select",
-      options: [
-        "primary",
-        "secondary",
-        "error",
-        "warning",
-        "info",
-        "success",
-        "inherit",
-      ],
-    },
-    disabled: {
-      control: "boolean",
-    },
-    loading: {
-      control: "boolean",
-    },
-    fullWidth: {
-      control: "boolean",
-    },
-  },
+  // parameters: {
+  //   layout: "centered",
+  // },
+  // tags: ["autodocs"],
+  // argTypes: {
+  //   variant: {
+  //     control: "select",
+  //     options: ["contained", "outlined", "text"],
+  //   },
+  //   size: {
+  //     control: "select",
+  //     options: ["small", "medium", "large"],
+  //   },
+  //   color: {
+  //     control: "select",
+  //     options: [
+  //       "primary",
+  //       "secondary",
+  //       "error",
+  //       "warning",
+  //       "info",
+  //       "success",
+  //       "inherit",
+  //     ],
+  //   },
+  //   disabled: {
+  //     control: "boolean",
+  //   },
+  //   loading: {
+  //     control: "boolean",
+  //   },
+  //   fullWidth: {
+  //     control: "boolean",
+  //   },
+  // },
 };
 
 export default meta;
@@ -130,6 +130,10 @@ export const FullWidth: Story = {
 };
 
 export const Interactive: Story = {
+  args: {
+    variant: "contained",
+  },
+
   render: function Render() {
     const [loading, setLoading] = React.useState(false);
 

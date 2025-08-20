@@ -1,30 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Avatar from "./index";
+import Avatar from ".";
 import type { AvatarProps } from "./Avatar.types";
 
 const meta: Meta<typeof Avatar> = {
   title: "Elements/Avatar",
   component: Avatar,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    size: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    variant: {
-      control: "select",
-      options: ["circular", "rounded", "square"],
-    },
-    backgroundColor: {
-      control: "color",
-    },
-    textColor: {
-      control: "color",
-    },
-  },
 };
 
 export default meta;
