@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import IconDropdown from "./index";
-import type { IconDropdownProps } from "./IconDropdown.types";
+import IconDropdown from ".";
 
 const meta: Meta<typeof IconDropdown> = {
   title: "Elements/IconDropdown",
