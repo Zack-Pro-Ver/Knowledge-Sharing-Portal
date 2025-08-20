@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import Link from "./index";
-import type { LinkProps } from "./Link.types";
+import Link from ".";
 
 const meta: Meta<typeof Link> = {
   title: "Elements/Link",
   component: Link,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -86,14 +87,6 @@ export const Sizes: Story = {
       </Link>
     </div>
   ),
-};
-
-export const Disabled: Story = {
-  args: {
-    children: "Disabled Link",
-    href: "#",
-    disabled: true,
-  },
 };
 
 export const CustomClass: Story = {
