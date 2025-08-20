@@ -21,7 +21,7 @@ export const CardStats = () => {
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="text-sm font-normal tracking-tight text-gray-900 dark:text-white">
-                    {title}{" "}
+                    {title}
                   </h1>
                   <h2 className="mt-0 text-2xl font-bold text-gray-900 dark:text-white">
                     {totalCount}
@@ -32,11 +32,17 @@ export const CardStats = () => {
                     } this week`}
                   </p>
                 </div>
-                <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center ${bgColor}`}
-                >
-                  {<Icon color={iconColor} />}
-                </div>
+
+                {/* ✅ Conditionally wrap icon */}
+                {bgColor ? (
+                  <div
+                    className={`w-12 h-12 rounded-full flex items-center justify-center ${bgColor}`}
+                  >
+                    <Icon color={iconColor} />
+                  </div>
+                ) : (
+                  <Icon color={iconColor} />
+                )}
               </div>
             </CardContent>
           </Card>
