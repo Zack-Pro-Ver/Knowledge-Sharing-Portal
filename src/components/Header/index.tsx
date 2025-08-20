@@ -18,4 +18,3 @@ export const Header = ({ title, description, buttonText, icon }: Props) => {
     </div>
   );
 };
-1;
