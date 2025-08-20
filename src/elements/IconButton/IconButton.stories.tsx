@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import IconButton from "./index";
-import type { IconButtonProps } from "./IconButton.types";
+import IconButton from ".";
 
 const meta: Meta<typeof IconButton> = {
   title: "Elements/IconButton",
   component: IconButton,
+  parameters: {
+    layout: "centered",
+  },
 };
 
 export default meta;
@@ -23,19 +24,6 @@ export const Sizes: Story = {
       <IconButton size="small">🔍</IconButton>
       <IconButton size="medium">🔍</IconButton>
       <IconButton size="large">🔍</IconButton>
-    </div>
-  ),
-};
-
-export const Colors: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-4">
-      <IconButton color="primary">⭐</IconButton>
-      <IconButton color="secondary">⭐</IconButton>
-      <IconButton color="error">⭐</IconButton>
-      <IconButton color="warning">⭐</IconButton>
-      <IconButton color="info">⭐</IconButton>
-      <IconButton color="success">⭐</IconButton>
     </div>
   ),
 };
