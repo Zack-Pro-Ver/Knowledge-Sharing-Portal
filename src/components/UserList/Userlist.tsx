@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUsers } from '../../hooks/useUsers';
+import { useUsers } from '../../references/useUsersRef';
 
 const UserList: React.FC = () => {
   const { data: users, isLoading, isError, error } = useUsers();
