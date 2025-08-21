@@ -9,7 +9,6 @@ const meta: Meta<typeof Card> = {
   },
   tags: ["autodocs"],
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -23,7 +22,6 @@ export const Default: Story = {
     ),
   },
 };
-
 export const Outlined: Story = {
   args: {
     variant: "outlined",
@@ -48,7 +46,6 @@ export const Elevation: Story = {
     ),
   },
 };
-
 export const Raised: Story = {
   args: {
     raised: true,
@@ -62,7 +59,6 @@ export const Raised: Story = {
     ),
   },
 };
-
 export const Sizes: Story = {
   render: () => (
     <div className="space-y-4">
