@@ -9,5 +9,4 @@ export { default as ProgressBar } from "./ProgressBar";
 export { default as IconButton } from "./IconButton";
 export { default as Typography } from "./Typography";
 export { default as Stack } from "./Stack";
-export { default as Menu } from "./Menu";
-export { default as MenuItem } from "./MenuItem";
+
