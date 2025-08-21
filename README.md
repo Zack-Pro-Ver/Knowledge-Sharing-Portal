@@ -124,23 +124,20 @@ The project includes a comprehensive component library with the following elemen
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone [repository-url]
-cd Knowledge-Sharing-Portal
-```
-<<<<<<< Updated upstream
-----------
-=======
+   ```bash
+   git clone https://github.com/jagadishkesav/Knowledge-Sharing-Portal.git
+   cd Knowledge-Sharing-Portal
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Start the development server:
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
 4. Open your browser and navigate to `http://localhost:5173`
 
@@ -198,12 +195,3 @@ This application can be deployed to any static hosting service:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-For support, email [support@knowledgesharing.com] or join our Slack channel.
->>>>>>> Stashed changes
