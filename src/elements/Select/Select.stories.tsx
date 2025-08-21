@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Select from "./index";
-import { RiArrowDownSLine, RiUserLine, RiMailLine } from "@remixicon/react";
+import { RiArrowDownSLine, RiUserLine} from "@remixicon/react";
 
 const meta: Meta<typeof Select> = {
   title: "Elements/Select",
@@ -9,33 +9,7 @@ const meta: Meta<typeof Select> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["outlined", "filled", "standard"],
-    },
-    size: {
-      control: "select",
-      options: ["small", "medium", "large"],
-    },
-    color: {
-      control: "select",
-      options: ["primary", "secondary", "error", "warning", "info", "success", "inherit"],
-    },
-    error: {
-      control: "boolean",
-    },
-    disabled: {
-      control: "boolean",
-    },
-    fullWidth: {
-      control: "boolean",
-    },
-    required: {
-      control: "boolean",
-    },
-  },
-};
+}
 
 export default meta;
 type Story = StoryObj<typeof meta>;
