@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import type { LabelProps } from "./Label.types";
 import { getLabelStyles, getAsteriskStyles } from "./Label.styles";
 

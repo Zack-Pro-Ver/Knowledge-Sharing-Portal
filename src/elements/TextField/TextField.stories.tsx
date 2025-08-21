@@ -8,6 +8,8 @@ const meta: Meta<typeof TextField> = {
   parameters: {
     layout: "centered",
   },
+
+  tags: ["autodocs"],
 };
 
 export default meta;
