@@ -9,6 +9,7 @@ const meta: Meta<typeof Dropdown> = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  
   argTypes: {
     variant: {
       control: "select",
