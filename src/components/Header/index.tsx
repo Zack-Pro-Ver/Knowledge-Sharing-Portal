@@ -3,7 +3,7 @@ import Button from "../../elements/Button/index";
 interface Props {
   title: string;
   description?: string;
-  buttonText: string;
+  buttonText?: string;
   icon?: React.ReactNode;
 }
 export const Header = ({ title, description, buttonText, icon }: Props) => {
