@@ -125,22 +125,19 @@ The project includes a comprehensive component library with the following elemen
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone [https://github.com/jagadishkesav/Knowledge-Sharing-Portal.git]
 cd Knowledge-Sharing-Portal
-```
-<<<<<<< Updated upstream
-----------
-=======
+
 
 2. Install dependencies:
 ```bash
 npm install
-```
+
 
 3. Start the development server:
 ```bash
 npm run dev
-```
+
 
 4. Open your browser and navigate to `http://localhost:5173`
 
@@ -178,7 +175,7 @@ Each component includes:
 
 ```bash
 npm run build
-```
+
 
 The built files will be in the `dist` directory, ready to be deployed to any static hosting service.
 
@@ -199,11 +196,5 @@ This application can be deployed to any static hosting service:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
-
-For support, email [support@knowledgesharing.com] or join our Slack channel.
->>>>>>> Stashed changes
