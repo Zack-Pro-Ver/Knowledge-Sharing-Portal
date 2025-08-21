@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Avatar from ".";
-
 const meta: Meta<typeof Avatar> = {
   title: "Elements/Avatar",
   component: Avatar,
   parameters: {
-    layout: "centered",
+  layout: "centered",
   },
   tags: ["autodocs"],
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 
