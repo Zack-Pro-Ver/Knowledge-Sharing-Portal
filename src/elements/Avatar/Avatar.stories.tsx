@@ -7,7 +7,6 @@ const meta: Meta<typeof Avatar> = {
   parameters: {
     layout: "centered",
   },
-
   tags: ["autodocs"],
 };
 
@@ -19,20 +18,17 @@ export const Default: Story = {
     children: "A",
   },
 };
-
 export const Image: Story = {
   args: {
     src: "https://c8.alamy.com/comp/2PWERD5/student-avatar-illustration-simple-cartoon-user-portrait-user-profile-icon-youth-avatar-vector-illustration-2PWERD5.jpg",
     alt: "User Avatar",
   },
 };
-
 export const Letter: Story = {
   args: {
     children: "JD",
   },
 };
-
 export const SizesAndVariants: Story = {
   render: () => (
     <div className="flex items-center gap-4">
@@ -53,7 +49,6 @@ export const SizesAndVariants: Story = {
     </div>
   ),
 };
-
 export const Clickable: Story = {
   args: {
     children: "C",
