@@ -15,4 +15,3 @@ export { default as ProgressBarRef } from './ProgressBarRef';
 export { default as StackRef } from './StackRef';
 export { default as TextFieldRef } from './TextFieldRef';
 export { default as TypographyRef } from './TypographyRef';
-export { default as MenuRef } from './MenuRef';
