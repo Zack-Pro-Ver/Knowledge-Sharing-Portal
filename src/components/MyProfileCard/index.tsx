@@ -1,4 +1,7 @@
 import Avatar from '../../elements/Avatar';
+import Stack from '../../elements/Stack';
+import Typography from '../../elements/Typography';
+import Link from '../../elements/Link';
 import {
   RiStarFill,
   RiLinksFill,
@@ -8,39 +11,51 @@ import {
 
 const MyProfileCard = () => {
   return (
-    <div className="flex items-center p-2 bg-white border border-gray-100 rounded-md ">
+    <Stack direction="row" spacing={4} alignItems="center" className="p-2 bg-white border border-gray-100 rounded-md">
       <Avatar
         size="large"
         variant="circular"
-        className="bg-gradient-to-tr  from-indigo-500 to-purple-500 text-white font-bold text-xl flex items-center justify-center"
+        className="bg-gradient-to-tr from-indigo-500 to-purple-500 text-white font-bold text-xl flex items-center justify-center"
       >
         JD
       </Avatar>
-      <div className="ml-4 flex-1">
-        <div className="flex items-center">
-          <span className="font-semibold text-lg">John Doe</span>
-          <span className="flex items-center ml-1 text-yellow-400 font-semibold text-base">
-            <RiStarFill className="w-4 h-4 mr-1" />
-            1,247
-          </span>
-        </div>
-        <div className=" text-sm text-gray-500 mb-2">San Francisco, CA</div>
-        <div className="flex space-x-3">
-          <a href="#" className="text-blue-500 hover:underline text-sm flex items-center">
-            <RiLinksFill className="mr-1 w-4 h-4" />
-            Website
-          </a>
-          <a href="#" className="hover:underline text-gray-500 text-sm flex items-center">
-            <RiGithubFill className="mr-1 w-4 h-4" />
-            GitHub
-          </a>
-          <a href="#" className="text-blue-500 hover:underline text-sm flex items-center">
-            <RiTwitterFill className="mr-1 w-4 h-4" />
-            Twitter
-          </a>
-        </div>
-      </div>
-    </div>
+      <Stack direction="column" spacing={1} className="flex-1">
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography variant="h6" component="span" fontWeight="semibold">
+            John Doe
+          </Typography>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <RiStarFill className="w-4 h-4 text-yellow-400" />
+            <Typography variant="body2" fontWeight="semibold" color="textPrimary">
+              1,247
+            </Typography>
+          </Stack>
+        </Stack>
+        <Typography variant="body2" color="textSecondary">
+          San Francisco, CA
+        </Typography>
+        <Stack direction="row" spacing={3}>
+          <Link href="#" variant="primary" size="small" underline="hover">
+            <Stack direction="row" spacing={1} alignItems="center">
+              <RiLinksFill className="w-4 h-4" />
+              <span>Website</span>
+            </Stack>
+          </Link>
+          <Link href="#" variant="default" size="small" underline="hover">
+            <Stack direction="row" spacing={1} alignItems="center">
+              <RiGithubFill className="w-4 h-4" />
+              <span>GitHub</span>
+            </Stack>
+          </Link>
+          <Link href="#" variant="primary" size="small" underline="hover">
+            <Stack direction="row" spacing={1} alignItems="center">
+              <RiTwitterFill className="w-4 h-4" />
+              <span>Twitter</span>
+            </Stack>
+          </Link>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 
