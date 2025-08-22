@@ -9,8 +9,7 @@ const meta: Meta<typeof Dropdown> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  
-  argTypes: {
+   argTypes: {
     variant: {
       control: "select",
       options: ["contained", "outlined", "text"],
@@ -42,7 +41,6 @@ const meta: Meta<typeof Dropdown> = {
     },
   },
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -52,14 +50,12 @@ const sampleOptions = [
   { label: "Option 3", value: "option3" },
   { label: "Option 4", value: "option4" },
 ];
-
 export const Default: Story = {
   args: {
     options: sampleOptions,
     placeholder: "Select an option",
   },
 };
-
 export const Outlined: Story = {
   args: {
     variant: "outlined",
@@ -67,7 +63,6 @@ export const Outlined: Story = {
     placeholder: "Select an option",
   },
 };
-
 export const WithValue: Story = {
   args: {
     options: sampleOptions,
@@ -75,7 +70,6 @@ export const WithValue: Story = {
     placeholder: "Select an option",
   },
 };
-
 export const Sizes: Story = {
   render: () => (
     <div className="space-y-4">
@@ -85,7 +79,6 @@ export const Sizes: Story = {
     </div>
   ),
 };
-
 export const Colors: Story = {
   render: () => (
     <div className="space-y-4">
@@ -99,7 +92,6 @@ export const Colors: Story = {
     </div>
   ),
 };
-
 export const Interactive: Story = {
   render: function Render() {
     const [value, setValue] = React.useState("");
