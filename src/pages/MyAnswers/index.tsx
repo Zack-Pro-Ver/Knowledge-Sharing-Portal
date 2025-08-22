@@ -7,7 +7,7 @@ export const MyAnswers = () => {
       <Header
         buttonText="Find Question"
         description="Track your contributions and impact"
-        icon={<RiSearchLine className="absolute left-4 item-center text-white w-5 h-5" />}
+        icon={<RiSearchLine className="absolute left-4 item-center text-white w-5 h-5"/>}
         title="My Answers"
       />
     </>
