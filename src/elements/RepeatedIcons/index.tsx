@@ -1,37 +1,20 @@
 import React, { forwardRef } from "react";
-import { RiAwardFill, RiMedalFill, RiQuestionFill, RiChat1Fill } from "@remixicon/react";
 import type { IconProps } from "./Icon.types";
-import Stack from "../Stack";
-import Typography from "../Typography";
+import { 
+  RiStarLine, 
+  RiMedalLine, 
+  RiChat1Line, 
+  RiQuestionLine 
+} from "@remixicon/react";
+import { 
+  sizeClasses, 
+  colorClasses, 
+  getIconContainerStyles, 
+  getLabelPositionStyles, 
+  spacingClasses 
+} from "./RepeatedIcons.styles";
 
-// Icon mapping
-const iconMap = {
-  award: RiAwardFill,
-  medal: RiMedalFill,
-  chat: RiChat1Fill,
-  question: RiQuestionFill,
-};
-
-// Size mapping
-const sizeClasses = {
-  small: "w-4 h-4",
-  medium: "w-5 h-5",
-  large: "w-6 h-6",
-  xlarge: "w-8 h-8",
-};
-
-// Color mapping
-const colorClasses = {
-  primary: "text-blue-600",
-  secondary: "text-gray-600",
-  error: "text-red-600",
-  warning: "text-amber-600",
-  info: "text-cyan-600",
-  success: "text-green-600",
-  inherit: "text-current",
-};
-
-const Icon = forwardRef<HTMLDivElement, IconProps>((props, ref) => {
+const Icon = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   const {
     name,
     size = "medium",
@@ -40,84 +23,55 @@ const Icon = forwardRef<HTMLDivElement, IconProps>((props, ref) => {
     label,
     labelPosition = "bottom",
     spacing = 1,
+    children,
     ...otherProps
   } = props;
 
-  const IconComponent = iconMap[name];
+  const containerStyles = getIconContainerStyles();
+  const sizeClass = sizeClasses[size];
+  const colorClass = colorClasses[color];
+  const positionStyles = getLabelPositionStyles(labelPosition);
+  const spacingClass = spacingClasses[spacing] || spacingClasses[1];
 
-  if (!IconComponent) {
-    return null;
-  }
-
-  const iconSizeClass = sizeClasses[size];
-  const iconColorClass = colorClasses[color];
-
-  // Determine direction based on label position
-  const getDirection = () => {
-    switch (labelPosition) {
-      case 'top':
-      case 'bottom':
-        return 'column';
-      case 'left':
-      case 'right':
-        return 'row';
-      default:
-        return 'column';
+  // Remix Icon components mapping
+  const renderIconContent = () => {
+    if (children) {
+      return children;
     }
-  };
+    
+    const IconComponent = {
+      award: RiStarLine,
+      medal: RiMedalLine,
+      chat: RiChat1Line,
+      question: RiQuestionLine
+    }[name];
 
-  // Determine alignment based on label position
-  const getAlignment = () => {
-    switch (labelPosition) {
-      case 'top':
-      case 'bottom':
-        return 'center';
-      case 'left':
-      case 'right':
-        return 'center';
-      default:
-        return 'center';
+    if (!IconComponent) {
+      return (
+        <span className={`${sizeClass} ${colorClass} flex items-center justify-center`}>
+        </span>
+      );
     }
+
+    return <IconComponent className={`${sizeClass} ${colorClass}`} />;
   };
-
-  const iconElement = (
-    <IconComponent className={`${iconSizeClass} ${iconColorClass}`} />
-  );
-
-  const labelElement = label ? (
-    <Typography variant="body2" color={color === 'inherit' ? 'textPrimary' : color}>
-      {label}
-    </Typography>
-  ) : null;
-
-  if (!label) {
-    return (
-      <div
-        ref={ref}
-        className={`inline-flex items-center justify-center ${className}`}
-        {...otherProps}
-      >
-        {iconElement}
-      </div>
-    );
-  }
 
   return (
-    <Stack
+    <span
       ref={ref}
-      direction={getDirection()}
-      spacing={spacing as any}
-      alignItems={getAlignment() as any}
-      className={className}
+      className={`${containerStyles} ${positionStyles} ${spacingClass} ${className}`}
+      aria-label={label}
       {...otherProps}
     >
-      {labelPosition === 'top' || labelPosition === 'left' ? labelElement : null}
-      {iconElement}
-      {labelPosition === 'bottom' || labelPosition === 'right' ? labelElement : null}
-    </Stack>
+      {renderIconContent()}
+      {label && (
+        <span className="text-sm text-gray-600">
+          {label}
+        </span>
+      )}
+    </span>
   );
 });
 
 Icon.displayName = "Icon";
-
 export default Icon;

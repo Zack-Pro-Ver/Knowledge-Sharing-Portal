@@ -10,30 +10,6 @@ const meta: Meta<typeof Icon> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    name: {
-      control: 'select',
-      options: ['award', 'medal', 'chat', 'question'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large', 'xlarge'],
-    },
-    color: {
-      control: 'select',
-      options: ['primary', 'secondary', 'error', 'warning', 'info', 'success', 'inherit'],
-    },
-    label: {
-      control: 'text',
-    },
-    labelPosition: {
-      control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
-    },
-    spacing: {
-      control: { type: 'range', min: 0, max: 5, step: 0.5 },
-    },
-  },
 };
 
 export default meta;
@@ -42,86 +18,164 @@ type Story = StoryObj<typeof meta>;
 // All icons with labels and colors
 export const AllIconsWithLabels: Story = {
   render: () => (
-    <Stack direction="row" spacing={6} alignItems="center" wrap="wrap">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-4">
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="award" label="Award" color="primary" size="large" />
+        <Icon name="award" color="primary" size="large" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Award
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="medal" label="Medal" color="success" size="large" />
+        <Icon name="medal" color="success" size="large" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Medal
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="chat" label="Chat" color="info" size="large" />
+        <Icon name="chat" color="info" size="large" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Chat
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="question" label="Question" color="warning" size="large" />
+        <Icon name="question" color="warning" size="large" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Question
+        </Typography>
       </Stack>
-    </Stack>
+    </div>
   ),
 };
 
 // Color variants with labels
 export const ColorVariants: Story = {
   render: () => (
-    <Stack direction="row" spacing={3} alignItems="center" wrap="wrap">
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Primary" color="primary" />
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="primary" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Primary
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Secondary" color="secondary" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="secondary" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Secondary
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Error" color="error" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="error" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Error
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Warning" color="warning" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="warning" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Warning
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Info" color="info" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="info" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Info
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="award" label="Success" color="success" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="award" color="success" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Success
+        </Typography>
       </Stack>
-    </Stack>
+    </div>
   ),
 };
 
 // Size variants with labels
 export const SizeVariants: Story = {
   render: () => (
-    <Stack direction="row" spacing={4} alignItems="center">
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="medal" label="Small" size="small" />
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="medal" color="primary" size="small" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Small
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="medal" label="Medium" size="medium" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="medal" color="primary" size="medium" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Medium
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="medal" label="Large" size="large" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="medal" color="primary" size="large" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Large
+        </Typography>
       </Stack>
-      <Stack direction="column" spacing={1} alignItems="center">
-        <Icon name="medal" label="XLarge" size="xlarge" />
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Icon name="medal" color="primary" size="xlarge" />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          XLarge
+        </Typography>
       </Stack>
-    </Stack>
+    </div>
   ),
 };
 
 // Label positions
 export const LabelPositions: Story = {
   render: () => (
-    <Stack direction="row" spacing={6} alignItems="center" wrap="wrap">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-4">
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="chat" label="Top" labelPosition="top" />
+        <Icon 
+          name="chat" 
+          color="primary" 
+          size="medium" 
+          label="Chat Icon" 
+          labelPosition="top" 
+        />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Top Position
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="chat" label="Bottom" labelPosition="bottom" />
+        <Icon 
+          name="chat" 
+          color="primary" 
+          size="medium" 
+          label="Chat Icon" 
+          labelPosition="bottom" 
+        />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Bottom Position
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="chat" label="Left" labelPosition="left" />
+        <Icon 
+          name="chat" 
+          color="primary" 
+          size="medium" 
+          label="Chat Icon" 
+          labelPosition="left" 
+        />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Left Position
+        </Typography>
       </Stack>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Icon name="chat" label="Right" labelPosition="right" />
+        <Icon 
+          name="chat" 
+          color="primary" 
+          size="medium" 
+          label="Chat Icon" 
+          labelPosition="right" 
+        />
+        <Typography variant="body2" className="text-gray-700 font-medium">
+          Right Position
+        </Typography>
       </Stack>
-    </Stack>
+    </div>
   ),
 };
 

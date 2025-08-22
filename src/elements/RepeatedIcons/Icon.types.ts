@@ -14,7 +14,7 @@ export type IconColor =
   | 'success'
   | 'inherit';
 
-export interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   name: IconName;
   size?: IconSize;
   color?: IconColor;
