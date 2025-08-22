@@ -1,5 +1,12 @@
 import Card, { CardHeader } from "../../elements/Card";
-import { MessageCircle, Check, ThumbsUp, Star } from "lucide-react";
+import {
+  RiChat1Line,
+  RiCheckDoubleLine,
+  RiStarLine,
+  RiThumbUpLine,
+  
+} from "@remixicon/react";
+
 
 export const MyAnswers = () => {
   const answers = [
@@ -7,7 +14,7 @@ export const MyAnswers = () => {
       id: 1,
       title: "28",
       subheader: "Total Answers",
-      icon: <MessageCircle className="w-5 h-5" />,
+      icon: < RiChat1Line className="w-5 h-5" />,
       bg: "bg-blue-100",
       color: "text-blue-600",
     },
@@ -15,7 +22,7 @@ export const MyAnswers = () => {
       id: 2,
       title: "12",
       subheader: "Accepted",
-      icon: <Check className="w-5 h-5" />,
+      icon: <RiCheckDoubleLine className="w-5 h-5" />,
       bg: "bg-green-100",
       color: "text-green-600",
     },
@@ -23,7 +30,7 @@ export const MyAnswers = () => {
       id: 3,
       title: "156",
       subheader: "Total Votes",
-      icon: <ThumbsUp className="w-5 h-5" />,
+      icon: <RiStarLine className="w-5 h-5" />,
       bg: "bg-purple-100",
       color: "text-purple-600",
     },
@@ -31,7 +38,7 @@ export const MyAnswers = () => {
       id: 4,
       title: "5.6",
       subheader: "Avg Rating",
-      icon: <Star className="w-4 h-4" />,
+      icon: <RiThumbUpLine className="w-4 h-4" />,
       bg: "bg-yellow-100",
       color: "text-yellow-600",
     },
