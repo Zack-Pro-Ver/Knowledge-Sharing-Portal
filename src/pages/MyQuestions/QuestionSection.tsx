@@ -6,6 +6,7 @@ import {
   RiThumbUpLine,
   RiMessage2Line,
   RiEyeLine,
+  RiQuestionMark
 } from "@remixicon/react";
 import Chip from "../../elements/Chip";
 import { Card, CardContent } from "../../elements/Card";
@@ -58,7 +59,7 @@ const questions = [
     answers: 6,
     views: 450,
     date: "2024-01-10",
-    status: "closed",
+    status: "open",
     lastActivity:"2 weeks ago "
 
   },
@@ -131,7 +132,19 @@ const QuestionsSearchCard: React.FC = () => {
 
       {/* Render Questions */}
       <div className=" -mx-4 ">
-        {filteredQuestions.map((q) => (
+         {filteredQuestions.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-10 text-center text-gray-500">
+          <div className="w-12 h-12 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+            <RiQuestionMark className="text-2xl text-gray-500" />
+         </div>
+          <p className="font-semibold text-gray-900">No questions found</p>
+          <p className="text-sm mt-1">Try adjusting your search or filter criteria</p>
+          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Ask Your First Question
+          </button>
+        </div>
+        ) : (
+        filteredQuestions.map((q) => (
           <div key={q.id} className="hover:bg-gray-50 border-b border-gray-200 last:border-b-0 ">
             <CardContent>
               <div className="flex justify-between items-start">
@@ -195,7 +208,8 @@ const QuestionsSearchCard: React.FC = () => {
               </div>
             </CardContent>
           </div>
-        ))}
+        ))
+  )}
       </div>
     </Card>
   );
