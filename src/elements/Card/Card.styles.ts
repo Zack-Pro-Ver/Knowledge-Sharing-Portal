@@ -9,7 +9,7 @@ export const getCardStyles = (
   const baseClasses = [
     'relative',
     'box-border',
-    'bg-white',
+    // 'bg-white', commented this line because when trying to give bg color for card in my UserAchivement.tsx file it's not applying, because this line.
     'text-gray-900',
     'transition-all',
     'duration-200',
