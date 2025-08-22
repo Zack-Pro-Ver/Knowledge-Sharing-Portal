@@ -24,6 +24,7 @@ const meta: Meta<typeof MenuItem> = {
   parameters: {
     layout: "centered",
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -173,41 +174,6 @@ export const Divider: Story = {
   ),
 };
 
-export const Interactive: Story = {
-  render: function Render() {
-    const [selected, setSelected] = React.useState<string | null>(null);
-
-    const handleClick = (item: string) => {
-      setSelected(item);
-    };
-
-    return (
-      <Stack direction="column" spacing={2} style={{ minWidth: 200 }}>
-        <Typography variant="body2">
-          Selected: {selected || "None"}
-        </Typography>
-        <MenuItem 
-          onClick={() => handleClick("Profile")} 
-          color={selected === "Profile" ? "primary" : "inherit"}
-        >
-          Profile
-        </MenuItem>
-        <MenuItem 
-          onClick={() => handleClick("Settings")} 
-          color={selected === "Settings" ? "primary" : "inherit"}
-        >
-          Settings
-        </MenuItem>
-        <MenuItem 
-          onClick={() => handleClick("Logout")} 
-          color={selected === "Logout" ? "primary" : "inherit"}
-        >
-          Logout
-        </MenuItem>
-      </Stack>
-    );
-  },
-};
 
 export const KitchenSink: Story = {
   render: () => (

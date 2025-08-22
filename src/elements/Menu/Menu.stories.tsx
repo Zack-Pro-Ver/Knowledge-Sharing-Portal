@@ -23,17 +23,6 @@ const meta: Meta<typeof Menu> = {
     layout: "centered",
   },
   tags: ['autodocs'],
-  argTypes: {
-    open: {
-      control: 'boolean',
-      description: 'Whether the menu is open',
-    },
-    position: {
-      control: 'select',
-      options: ['bottom-left', 'bottom-right', 'top-left', 'top-right'],
-      description: 'Position of the menu relative to anchor element',
-    },
-  },
 };
 
 export default meta;
