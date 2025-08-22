@@ -12,6 +12,7 @@ export interface User {
   createdAt?: string;
 }
 
+//this is reference code can be removed in the future
 export const useUsers = () => {
   return useQuery<User[], Error>({
     queryKey: ['users'],
