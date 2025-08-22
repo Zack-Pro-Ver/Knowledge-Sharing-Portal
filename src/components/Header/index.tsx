@@ -1,12 +1,15 @@
 import Button from "../../elements/Button/index";
 
-interface Props {
+interface BaseProps {
   title: string;
   description?: string;
   buttonText?: string;
   icon?: React.ReactNode;
 }
-export const Header = ({ title, description, buttonText, icon }: Props) => {
+
+type HeaderProps = ButtonRequiredProps | ButtonOptionalProps;
+
+export const Header = ({ title, description, showButton, buttonText, icon }: HeaderProps) => {
   return (
     <div className="flex flex-row justify-between p-4">
       <div className="flex ">
@@ -14,7 +17,9 @@ export const Header = ({ title, description, buttonText, icon }: Props) => {
         {description && <p className="text-base font-normal">{description} </p>}
       </div>
 
-      <Button startIcon={icon}>{buttonText}</Button>
+      {showButton && (
+        <Button startIcon={icon}>{buttonText}</Button>
+      )}
     </div>
   );
 };
