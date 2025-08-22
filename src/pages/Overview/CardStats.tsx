@@ -43,13 +43,25 @@ export const CardStats = () => {
                     {totalCount}
                   </Typography>
 
-                  <Typography
-                    variant="body2"
-                    className={currentWeekCount > 0 ? "green" : "gray"}
+                  <p
+                    // variant="body2"
+                    className={
+                      currentWeekCount > 0 ? "text-green-500" : "text-gray-500"
+                    }
                   >
                     {currentWeekCount > 0 ? `+${currentWeekCount}` : 0} this
                     week
-                  </Typography>
+                  </p>
+                  {/* 
+                  <typography
+                    variant="body2"
+                    className={
+                      currentWeekCount > 0 ? "text-green-500" : "text-gray-500"
+                    }
+                  >
+                    {currentWeekCount > 0 ? `+${currentWeekCount}` : 0} this
+                    week
+                  </typography> */}
                 </Stack>
 
                 <IconWrapper bgColor={bgColor}>
