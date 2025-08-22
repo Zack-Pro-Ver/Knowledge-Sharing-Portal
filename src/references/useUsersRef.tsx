@@ -1,7 +1,7 @@
 // this is a reference file and should be removed in the future
 
 import { useQuery } from '@tanstack/react-query';
-import api from '../mock/api/axiosInstance';
+import api from '../api/axiosInstance';
 
 export interface User {
   id: number;
