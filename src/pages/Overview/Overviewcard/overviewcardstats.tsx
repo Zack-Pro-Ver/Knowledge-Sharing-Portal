@@ -1,0 +1,32 @@
+export const RecentQuestionCardStats = [
+  {
+    title: "Answer",
+    description: "Some description",
+    img: <i>📝</i>,
+    totalActions: 7,
+    action: "2 hour ago",
+    actionVotes: 3,
+    actionsDone: "answered",
+    btnText: "Answer",
+  },
+  {
+    title: " Question",
+    description: "Another description",
+    img: <i>💡</i>,
+    totalActions: 5,
+    action: "1 hour ago",
+    actionVotes: 2,
+    actionsDone: "answered",
+    btnText: "answer",
+  },
+  {
+    title: "Another ",
+    description: "Another description",
+    img: <i>💡</i>,
+    totalActions: 5,
+    action: "1 hour ago",
+    actionVotes: 2,
+    actionsDone: "answered",
+    btnText: "answer",
+  },
+];
