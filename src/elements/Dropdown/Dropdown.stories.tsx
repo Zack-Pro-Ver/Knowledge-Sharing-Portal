@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import Dropdown from ".";
-
 const meta: Meta<typeof Dropdown> = {
   title: "Elements/Dropdown",
   component: Dropdown,
@@ -43,7 +42,6 @@ const meta: Meta<typeof Dropdown> = {
 };
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 const sampleOptions = [
   { label: "Option 1", value: "option1" },
   { label: "Option 2", value: "option2" },
