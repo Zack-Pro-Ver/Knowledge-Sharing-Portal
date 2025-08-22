@@ -11,6 +11,7 @@ import { UserManagement } from "./pages/AdminControl/UserManagement";
 import Sidebar from "./components/Sidebar";
 import MainLayout from "./layouts/MainLayout";
 import { useNavigate } from "react-router-dom";
+import UserList from "./components/UserListRef/UserlistRef";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,15 @@ export const router = createBrowserRouter([
           {
             path: "user-management",
             element: <UserManagement />,
+          },
+        ],
+      },
+      {
+        path: "example",
+        children: [
+          {
+            path: "user-list",
+            element: <UserList />,
           },
         ],
       },
