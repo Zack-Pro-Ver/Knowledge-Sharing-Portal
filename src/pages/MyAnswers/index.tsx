@@ -1,4 +1,4 @@
-import { RiSearchLine } from "react-icons/ri";
+import { RiSearchLine } from "@remixicon/react";
 import { Header } from "../../components/Header";
 
 export const MyAnswers = () => {
