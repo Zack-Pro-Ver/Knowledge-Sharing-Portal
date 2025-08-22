@@ -1,17 +1,12 @@
 import Avatar from '../../elements/Avatar';
 import Stack from '../../elements/Stack';
 import Typography from '../../elements/Typography';
-import Link from '../../elements/Link';
-import {
-  RiStarFill,
-  RiLinksFill,
-  RiGithubFill,
-  RiTwitterFill
-} from '@remixicon/react';
-
+import { RiStarFill } from '@remixicon/react';
+import { SocialIcons } from './SocialIcons';
 const MyProfileCard = () => {
   return (
-    <Stack direction="row" spacing={4} alignItems="center" className="p-2 bg-white border border-gray-100 rounded-md">
+    <div className="p-2 bg-white border border-gray-100 rounded-md">
+    <Stack direction="row" spacing={4} alignItems="center" >
       <Avatar
         size="large"
         variant="circular"
@@ -19,7 +14,8 @@ const MyProfileCard = () => {
       >
         JD
       </Avatar>
-      <Stack direction="column" spacing={1} className="flex-1">
+      <div className='flex-1'>
+      <Stack direction="column" spacing={1}>
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography variant="h6" component="span" fontWeight="semibold">
             John Doe
@@ -34,22 +30,11 @@ const MyProfileCard = () => {
         <Typography variant="body2" color="textSecondary" component="span">
           San Francisco, CA
         </Typography>
-        <Stack direction="row" spacing={3}>
-          {[
-            { icon: RiLinksFill, label: 'Website', variant: 'primary' as const, href: 'https://google.com' },
-            { icon: RiGithubFill, label: 'GitHub', variant: 'default' as const, href: 'https://github.com' },
-            { icon: RiTwitterFill, label: 'Twitter', variant: 'primary' as const, href: 'https://twitter.com'}
-          ].map(({ icon: Icon, label, variant, href }) => (
-            <Link key={label} href={href} variant={variant} size="small" underline="hover">
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Icon className="w-4 h-4" />
-                <Typography variant="body2" component="span">{label}</Typography>
-              </Stack>
-            </Link>
-          ))}
-        </Stack>
+        <SocialIcons/>
       </Stack>
+      </div>
     </Stack>
+    </div>
   );
 };
 
