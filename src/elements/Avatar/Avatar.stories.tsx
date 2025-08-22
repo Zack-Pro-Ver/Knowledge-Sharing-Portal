@@ -10,7 +10,6 @@ const meta: Meta<typeof Avatar> = {
 };
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 export const Default: Story = {
   args: {
     children: "A",
@@ -34,11 +33,10 @@ export const SizesAndVariants: Story = {
         size="small"
         variant="circular"
         backgroundColor="#3b82f6"
-        textColor="white"
-      >
-        S
+        textColor="white" >
+         S
       </Avatar>
-      <Avatar size="medium" variant="rounded">
+     <Avatar size="medium" variant="rounded">
         M
       </Avatar>
       <Avatar size="large" variant="square">
