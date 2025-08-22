@@ -1,5 +1,6 @@
 import { Stack, Typography } from "../../elements";
 import Card, { CardContent } from "../../elements/Card";
+import { IconWrapper } from "../../elements/IconWrapper";
 import { UserStats } from "./Overview.constants";
 
 export const CardStats = () => {
@@ -51,16 +52,9 @@ export const CardStats = () => {
                   </Typography>
                 </Stack>
 
-                {/* Right side icon */}
-                {bgColor ? (
-                  <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center ${bgColor}`}
-                  >
-                    <Icon color={iconColor} />
-                  </div>
-                ) : (
-                  <Icon color={iconColor} />
-                )}
+                <IconWrapper bgColor={bgColor}>
+                  <Icon className={iconColor} />
+                </IconWrapper>
               </Stack>
             </CardContent>
           </Card>
