@@ -1,11 +1,11 @@
 import React from "react";
 import { Header } from "../../components/Header"; 
-import { FiPlus } from "react-icons/fi";
+import { RiAddLine } from "@remixicon/react";
 import QuestionsSection from "./QuestionSection";
 
 interface MyQuestionsProps {
-  headerTitle?: string;
-  headerButtonText?: string;
+  headerTitle: string;
+  headerButtonText: string;
 }
 
 export const MyQuestions: React.FC<MyQuestionsProps> = ({
@@ -17,8 +17,8 @@ export const MyQuestions: React.FC<MyQuestionsProps> = ({
       <Header
         title={headerTitle}
         buttonText={headerButtonText}
-        icon={<FiPlus />} 
-      />
+        icon={<RiAddLine />}
+        />
 
       <div className="mt-6">
         <QuestionsSection />
