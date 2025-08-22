@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "../../components/Header"; 
 import { FiPlus } from "react-icons/fi";
+import QuestionsSection from "./QuestionSection";
 
 interface MyQuestionsProps {
   headerTitle?: string;
@@ -18,6 +19,10 @@ export const MyQuestions: React.FC<MyQuestionsProps> = ({
         buttonText={headerButtonText}
         icon={<FiPlus />} 
       />
+
+      <div className="mt-6">
+        <QuestionsSection />
+      </div>
     </div>
   );
 };
