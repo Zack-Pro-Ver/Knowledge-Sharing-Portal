@@ -1,16 +1,18 @@
 import Card, { CardContent } from "../../../elements/Card"
+import { Typography } from "../../../elements"
+import type { TypographyColor } from "../../../elements/Typography/Typography.types"
 
 interface CardItem {
     count: string
     badge: string
 }
 
-const countColor: Record<string, string> = {
-    "Silver": "text-gray-600",
-    "Total Badges": "text-gray-900",
-    "Bronze": "text-amber-600",
-    "Gold": "text-yellow-600",
-    "Platinum": "text-purple-600",
+const countColor: Record<string, TypographyColor> = {
+    "Silver": "secondary",    
+    "Total Badges": "textPrimary",
+    "Bronze": "warning",      
+    "Gold": "warning",        
+    "Platinum": "primary",
 }
 
 const cardData: CardItem[] = [
@@ -36,7 +38,7 @@ const cardData: CardItem[] = [
     }
 ]
 
-const BadgesCards: React.FC = () => {
+const BadgesCards = () => {
     return (
         <div className="grid grid-cols-5">
             {cardData.map((item, index) => (
@@ -48,19 +50,19 @@ const BadgesCards: React.FC = () => {
                     <CardContent
                         className="flex flex-col justify-center items-center">
 
-                        <h3
-                            className={`text-2xl font-bold ${countColor[item.badge] || "text-gray-900"}`}
-                        >
+                        <Typography fontWeight="semibold" variant="h4" color={countColor[item.badge]}>
                             {item.count}
-                        </h3>
+                        </Typography>
 
-                        <p className="text-sm text-gray-600" >
+
+                        <Typography variant="body2" color="textSecondary">
                             {item.badge}
-                        </p>
+                        </Typography>
                     </CardContent>
                 </Card>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     )
 }
 

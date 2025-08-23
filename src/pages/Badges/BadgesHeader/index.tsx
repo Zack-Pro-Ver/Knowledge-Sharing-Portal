@@ -5,6 +5,7 @@ export const BadgesHeader = () => {
     <Header
       title='My Badges'
       description="Track your achievements and progress"
+      showButton={false}
     />
   )
 }
