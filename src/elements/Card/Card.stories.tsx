@@ -1,17 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Card from ".";
-
 const meta: Meta<typeof Card> = {
   title: "Elements/Card",
   component: Card,
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 export const Default: Story = {
   args: {
     children: (
@@ -22,7 +20,6 @@ export const Default: Story = {
     ),
   },
 };
-
 export const Outlined: Story = {
   args: {
     variant: "outlined",
@@ -34,7 +31,6 @@ export const Outlined: Story = {
     ),
   },
 };
-
 export const Elevation: Story = {
   args: {
     variant: "elevation",
@@ -47,7 +43,6 @@ export const Elevation: Story = {
     ),
   },
 };
-
 export const Raised: Story = {
   args: {
     raised: true,
@@ -61,7 +56,6 @@ export const Raised: Story = {
     ),
   },
 };
-
 export const Sizes: Story = {
   render: () => (
     <div className="space-y-4">

@@ -1,18 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import Checkbox from ".";
-
 const meta: Meta<typeof Checkbox> = {
   title: "Elements/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",
   },
+  tags: ["autodocs"],
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 export const Default: Story = {
   args: {
     label: "Checkbox",
@@ -25,7 +23,6 @@ export const Checked: Story = {
     label: "Checked Checkbox",
   },
 };
-
 export const Unchecked: Story = {
   args: {
     checked: false,
@@ -40,14 +37,12 @@ export const Unchecked: Story = {
 //     label: "Indeterminate Checkbox",
 //   },
 // };
-
 export const Disabled: Story = {
   args: {
     disabled: true,
     label: "Disabled Checkbox",
   },
 };
-
 export const DisabledChecked: Story = {
   args: {
     disabled: true,
@@ -55,7 +50,6 @@ export const DisabledChecked: Story = {
     label: "Disabled Checked",
   },
 };
-
 export const Sizes: Story = {
   render: () => (
     <div className="space-y-4">
@@ -65,7 +59,6 @@ export const Sizes: Story = {
     </div>
   ),
 };
-
 export const LabelPlacement: Story = {
   render: () => (
     <div className="space-y-4">
@@ -76,12 +69,10 @@ export const LabelPlacement: Story = {
     </div>
   ),
 };
-
 export const Interactive: Story = {
   render: function Render() {
     const [checked, setChecked] = React.useState(false);
-
-    return (
+return (
       <Checkbox
         checked={checked}
         onChange={(e) => setChecked(e.target.checked)}
