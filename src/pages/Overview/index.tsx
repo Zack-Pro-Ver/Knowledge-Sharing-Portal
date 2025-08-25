@@ -1,5 +1,6 @@
 import { RiQuestionLine } from "@remixicon/react";
 import { Header } from "../../components/Header";
+import RecentBadgesCard from "./Recent Badges";
 
 export const Overview = () => {
   return (
@@ -11,6 +12,7 @@ export const Overview = () => {
         title="Welcome back, John!
 "
       />
+      <RecentBadgesCard />
     </>
   );
 };
