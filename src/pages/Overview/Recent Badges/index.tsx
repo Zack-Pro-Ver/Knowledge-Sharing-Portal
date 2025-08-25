@@ -1,7 +1,8 @@
 import { Button } from "../../../elements";
 import { Card, CardContent, CardHeader } from "../../../elements/Card";
-import { Typography } from "../../../elements";
+import Typography from "../../../elements/Typography";
 import { RecentBadges } from "./RecentBadgesCards";
+import Stack from "../../../elements/Stack";
 
 interface BadgeProps {
   title: string;
@@ -13,36 +14,46 @@ export default function RecentBadgesCard() {
   return (
     <Card className="w-[100%] min-h-[180px] p-3 shadow rounded-2xl">
       {/* Header */}
-      <CardHeader>
-        <div className="flex items-center justify-between ">
-          <Typography variant="h6">Recent Badgges</Typography>
-          <Button variant="text" size="small">
-            View All pages
-          </Button>
-        </div>
+      <CardHeader title="Recent Badges" className="flex justify-between p-5">
+        <Button variant="text" size="small">
+          View All pages
+        </Button>
       </CardHeader>
 
-      {/* Content in row */}
-      <CardContent className="">
-        <div className="flex flex-row gap-7 p-4 flex-wrap w-100% ">
+      {/* Content in Stack */}
+      <CardContent>
+        <Stack direction="row" spacing={4} wrap="wrap" className="p-4">
           {RecentBadges.map(({ title, type, earnedAt }: BadgeProps, index) => (
-            <div
+            <Stack
               key={index}
-              className="bg-gray-50 p-3 rounded-lg w-[330px] flex flex-col justify-between"
+              direction="column"
+              spacing={2}
+              className="bg-gray-50 p-3 rounded-lg w-[330px] flex justify-between"
             >
               {/* Badge title */}
-              <p className="text-sm font-medium truncate">{title}</p>
+              <Typography variant="body2" className="font-medium truncate">
+                {title}
+              </Typography>
 
               {/* Badge details */}
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-lg">
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Typography
+                  variant="caption"
+                  className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-lg"
+                >
                   {type}
-                </span>
-                <p className="text-xs text-gray-500">{earnedAt}</p>
-              </div>
-            </div>
+                </Typography>
+                <Typography variant="caption" className="text-gray-500">
+                  {earnedAt}
+                </Typography>
+              </Stack>
+            </Stack>
           ))}
-        </div>
+        </Stack>
       </CardContent>
     </Card>
   );
