@@ -37,6 +37,7 @@ export const Card: React.FC<CardProps> = ({
 // Card Header Component
 export const CardHeader: React.FC<CardHeaderProps> = ({
   title,
+  children,
   subheader,
   avatar,
   action,

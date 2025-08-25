@@ -6,7 +6,7 @@ interface Props {
 export const IconWrapper = ({ bgColor, children, className = "" }: Props) => {
   return (
     <div
-      className={`w-12 h-12 rounded-full flex items-center justify-center ${bgColor} ${className}`}
+      className={`w-8 h-8 rounded-full flex items-center justify-center ${bgColor} ${className}`}
     >
       {children}
     </div>
