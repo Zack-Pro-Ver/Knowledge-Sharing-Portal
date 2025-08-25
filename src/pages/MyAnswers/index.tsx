@@ -1,10 +1,11 @@
+import  { useState } from "react";
 import Card, { CardHeader } from "../../elements/Card";
 import {
   RiChat1Line,
   RiCheckDoubleLine,
   RiStarLine,
   RiThumbUpLine,
-  RiSearchLine
+  RiSearchLine,
 } from "@remixicon/react";
 import { Header } from "../../components/Header";
 
@@ -48,7 +49,7 @@ export const MyAnswers = () => {
     {
       id: "status",
       options: [
-        { value: "All Status", label: "Newest" },
+        { value: "all", label: "All Status" },
         { value: "accepted", label: "Accepted" },
         { value: "answered", label: "Answered" },
         { value: "pending", label: "Pending" },
@@ -57,6 +58,7 @@ export const MyAnswers = () => {
     {
       id: "sort",
       options: [
+        { value: "newest", label: "Newest" },
         { value: "oldest", label: "Oldest" },
         { value: "most votes", label: "Most Votes" },
         { value: "recent activity", label: "Recent Activity" },
@@ -75,6 +77,8 @@ export const MyAnswers = () => {
       answeredAt: "2 days ago",
       lastActivity: "5 hours ago",
       actions: ["View", "Edit"],
+      votes: 20,
+      createdAt: new Date(2024, 10, 20),
     },
     {
       id: 2,
@@ -86,55 +90,85 @@ export const MyAnswers = () => {
       answeredAt: "1 week ago",
       lastActivity: "2 days ago",
       actions: ["View", "Edit"],
+      votes: 12,
+      createdAt: new Date(2024, 10, 15),
     },
     {
       id: 3,
       title: "Database design patterns for scalability?",
       tags: ["database", "design", "scalability"],
       description:
-        "For scalable database design, consider implementing these patterns: 1. Database sharding, 2. Read replicas, 3. Caching strategies",
+        "For scalable database design, consider: sharding, read replicas, caching strategies...",
       status: "answered",
       answeredAt: "2 days ago",
       lastActivity: "5 hours ago",
       actions: ["View", "Edit"],
+      votes: 34,
+      createdAt: new Date(2024, 10, 19),
     },
     {
       id: 4,
       title: "Node.js security best practices?",
       tags: ["nodejs", "security", "backend"],
       description:
-        "Security in Node.js applications requires attention to multiple areas: authentication, authorization, input validation, and secure headers...",
+        "Security in Node.js requires: authentication, authorization, input validation, secure headers...",
       status: "accepted",
       answeredAt: "3 days ago",
       lastActivity: "2 hours ago",
       actions: ["View", "Edit"],
+      votes: 50,
+      createdAt: new Date(2024, 10, 18),
     },
     {
       id: 5,
       title: "CSS Grid vs Flexbox: When to use which?",
       tags: ["css", "layout", "frontend"],
       description:
-        "Both CSS Grid and Flexbox are powerful layout tools, but they serve different purposes. Grid is for 2D layouts, while Flexbox is for 1D layouts",
+        "Both CSS Grid and Flexbox are powerful layout tools, but they serve different purposes. Grid is for 2D layouts, while Flexbox is for 1D layouts...",
       status: "answered",
       answeredAt: "2 days ago",
       lastActivity: "5 hours ago",
       actions: ["View", "Edit"],
+      votes: 18,
+      createdAt: new Date(2024, 10, 21),
     },
   ];
+
+  // 🔹 State for search & filters
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
+
+  // 🔹 Filtering logic
+  const filteredAnswers = answers
+    .filter((a) =>
+      a.title.toLowerCase().includes(search.toLowerCase()) ||
+      a.description.toLowerCase().includes(search.toLowerCase()) ||
+      a.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()))
+    )
+    .filter((a) =>
+      statusFilter === "all" ? true : a.status === statusFilter
+    )
+    .sort((a, b) => {
+      if (sortBy === "newest") return b.createdAt.getTime() - a.createdAt.getTime();
+      if (sortBy === "oldest") return a.createdAt.getTime() - b.createdAt.getTime();
+      if (sortBy === "most votes") return b.votes - a.votes;
+      if (sortBy === "recent activity") return b.lastActivity.localeCompare(a.lastActivity);
+      return 0;
+    });
 
   return (
     <>
       {/* 🔹 Header Section */}
-   
-<div className="px-2">
-  <Header
-    buttonText="Find Question"
-    description="Track your contributions and impact"
-    icon={<RiSearchLine className="absolute left-4 item-center text-white w-5 h-5" />}
-    title="My Answers"
-  />
-</div>
-
+      <div className="px-2">
+        <Header
+          buttonText="Find Question"
+          description="Track your contributions and impact"
+          showButton={true}
+          icon={<RiSearchLine className="absolute left-4 item-center text-white w-5 h-5" />}
+          title="My Answers"
+        />
+      </div>
 
       <div className="p-4">
         {/* 🔹 Top Stats Row */}
@@ -164,7 +198,7 @@ export const MyAnswers = () => {
           ))}
         </div>
 
-        {/* 🔹 Search Bar */}
+        {/* 🔹 Search Bar + Filters */}
         <Card
           variant="outlined"
           size="small"
@@ -175,34 +209,45 @@ export const MyAnswers = () => {
             <div className="relative flex-1 w-full">
               <RiSearchLine className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
               <input
-                type="text"
-                placeholder="Search answers..."
-                className="w-full p-2 rounded-md pl-10 text-black border border-gray-300 focus:ring-1 outline-offset-2"
+              type="text"
+              placeholder="Search answers..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full p-2 rounded-md pl-10 text-black border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               />
+
             </div>
 
-            {filters.map((filter) => (
-              <select
-                key={filter.id}
-                className="px-3 py-2 border rounded-md focus:ring-1 border-gray-300 outline-offset-2"
-              >
-                {filter.options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            ))}
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 border-gray-300 outline-offset-2"
+            >
+              {filters[0].options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 border-gray-300 outline-offset-2"
+            >
+              {filters[1].options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
         </Card>
 
         {/* 🔹 Answers List */}
         <div>
-          {answers?.map((answer, index) => {
+          {filteredAnswers.map((answer, index) => {
             const avatarIcons = [
-              <RiCheckDoubleLine className="w-4 h-4 text-green-600" />,
-              <RiChat1Line className="w-4 h-4 text-blue-600" />,
-              <RiChat1Line className="w-4 h-4 text-blue-600" />,
               <RiCheckDoubleLine className="w-4 h-4 text-green-600" />,
               <RiChat1Line className="w-4 h-4 text-blue-600" />,
             ];
@@ -263,18 +308,17 @@ export const MyAnswers = () => {
                         {answer.lastActivity}
                       </p>
                       <div className="flex gap-4">
-                       {answer.actions.map((action) => (
-                            <button
+                        {answer.actions.map((action) => (
+                          <button
                             key={action}
                             className={`hover:underline ${
-                            action === "Edit" ? "text-black" : "text-blue-600"
+                              action === "Edit" ? "text-black" : "text-blue-600"
                             }`}
-                             >
-                          {action}
-                         </button>
-                          ))}
-                          </div>
-
+                          >
+                            {action}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
