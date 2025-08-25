@@ -28,7 +28,12 @@ export const Header = ({
   icon,
 }: HeaderProps) => {
   return (
-    <Stack direction="row" justifyContent="space-between" alignItems="center" p={4}>
+    <Stack
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      p={4}
+    >
       {/* Left side: title + description */}
       <Stack direction="column" spacing={0.5}>
         <Typography variant="h5" className="font-bold">
@@ -46,4 +51,3 @@ export const Header = ({
     </Stack>
   );
 };
-

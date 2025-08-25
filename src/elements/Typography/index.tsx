@@ -43,8 +43,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>((props, ref) => {
   return (
     <Component
       ref={ref}
-      // className={`${typographyStyles} ${className}`}
-      className={`${className} ${typographyStyles}`}
+      className={`${typographyStyles} ${className}`}
       {...otherProps}
     >
       {children}

@@ -10,6 +10,7 @@ export const Overview = () => {
         description="Here's what's happening with your account"
         icon={<RiQuestionLine size="medium" />}
         title="Welcome back, John!"
+        showButton
       />
       <CardStats />
     </>
