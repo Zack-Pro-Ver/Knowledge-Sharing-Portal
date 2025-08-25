@@ -1,17 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import type { ReactNode } from "react";
-import { getDropdownButtonStyles, getDropdownMenuStyles, getDropdownItemStyles } from "./IconDropdown.styles";
+import {
+  getDropdownButtonStyles,
+  getDropdownMenuStyles,
+  getDropdownItemStyles,
+} from "./IconDropdown.styles";
 import type { DropdownProps } from "./IconDropdown.types";
 
-const Dropdown: React.FC<DropdownProps> = ({ buttonLabel, buttonIcon, items, variant, className = "" }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  buttonLabel,
+  buttonIcon,
+  items,
+  variant,
+  className = "",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   };
@@ -24,9 +37,14 @@ const Dropdown: React.FC<DropdownProps> = ({ buttonLabel, buttonIcon, items, var
   }, []);
 
   return (
-    <div className={`relative inline-block text-left ${className}`} ref={dropdownRef}>
+    <div
+      className={`relative inline-block text-left ${className}`}
+      ref={dropdownRef}
+    >
       <div className={getDropdownButtonStyles()}>
-        {buttonIcon && <span className="mr-2 flex items-center">{buttonIcon}</span>}
+        {buttonIcon && (
+          <span className="mr-2 flex items-center">{buttonIcon}</span>
+        )}
         {buttonLabel && <span>{buttonLabel}</span>}
         <button
           type="button"
@@ -40,7 +58,12 @@ const Dropdown: React.FC<DropdownProps> = ({ buttonLabel, buttonIcon, items, var
       </div>
 
       {isOpen && (
-        <div className={getDropdownMenuStyles()} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+        <div
+          className={getDropdownMenuStyles()}
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
           {variant === "iconWithName" &&
             items.map((item: any, index: any) => (
               <button
@@ -71,12 +94,18 @@ const Dropdown: React.FC<DropdownProps> = ({ buttonLabel, buttonIcon, items, var
                 type="button"
               >
                 <div className="flex flex-col">
-                  <span className="text-sm font-medium text-gray-900">{item.label}</span>
+                  <span className="text-sm font-medium text-gray-900">
+                    {item.label}
+                  </span>
                   {item.description && (
-                    <span className="text-xs text-gray-500">{item.description}</span>
+                    <span className="text-xs text-gray-500">
+                      {item.description}
+                    </span>
                   )}
                   {item.timestamp && (
-                    <span className="text-xs text-gray-400">{item.timestamp}</span>
+                    <span className="text-xs text-gray-400">
+                      {item.timestamp}
+                    </span>
                   )}
                 </div>
               </button>
