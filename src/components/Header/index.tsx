@@ -1,3 +1,4 @@
+import { Stack, Typography } from "../../elements";
 import Button from "../../elements/Button/index";
 
 interface BaseProps {
@@ -27,13 +28,22 @@ export const Header = ({
   icon,
 }: HeaderProps) => {
   return (
-    <div className="flex flex-row justify-between p-4">
-      <div className="flex flex-col">
-        <p className="text-2xl font-bold ">{title}</p>
-        {description && <p className="text-base font-normal">{description} </p>}
-      </div>
+    <Stack direction="row" justifyContent="space-between" alignItems="center" p={4}>
+      {/* Left side: title + description */}
+      <Stack direction="column" spacing={0.5}>
+        <Typography variant="h5" className="font-bold">
+          {title}
+        </Typography>
+        {description && (
+          <Typography variant="body1" className="font-normal">
+            {description}
+          </Typography>
+        )}
+      </Stack>
 
+      {/* Right side: button (only if showButton true) */}
       {showButton && <Button startIcon={icon}>{buttonText}</Button>}
-    </div>
+    </Stack>
   );
 };
+
