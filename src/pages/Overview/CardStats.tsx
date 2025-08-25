@@ -25,7 +25,7 @@ export const CardStats = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                {/* Left side text */}
+                
                 <Stack direction="column" spacing={1}>
                   <Typography
                     variant="h6"
@@ -43,17 +43,7 @@ export const CardStats = () => {
                     {totalCount}
                   </Typography>
 
-                  <p
-                    // variant="body2"
-                    className={
-                      currentWeekCount > 0 ? "text-green-500" : "text-gray-500"
-                    }
-                  >
-                    {currentWeekCount > 0 ? `+${currentWeekCount}` : 0} this
-                    week
-                  </p>
-                  {/* 
-                  <typography
+                <typography
                     variant="body2"
                     className={
                       currentWeekCount > 0 ? "text-green-500" : "text-gray-500"
@@ -63,7 +53,6 @@ export const CardStats = () => {
                     week
                   </typography> */}
                 </Stack>
-
                 <IconWrapper bgColor={bgColor}>
                   <Icon className={iconColor} />
                 </IconWrapper>
