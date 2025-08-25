@@ -92,7 +92,7 @@ const QuestionsSearchCard: React.FC = () => {
 
   return (
     <Card variant="outlined" size="large" className="p-4">
-      <div className="flex gap-3 w-full mb-4">
+      <div className="flex flex-col md:flex-row gap-3 w-full mb-4">
         <div className="relative flex-1">
             <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           <input
@@ -113,7 +113,7 @@ const QuestionsSearchCard: React.FC = () => {
           variant="outlined"
           size="medium"
           color="secondary"
-          className="min-w-[110px] bg-gray-50"
+          className="min-w-[110px] bg-gray-50 w-full md:w-auto"
         />
 
         <Dropdown
@@ -124,7 +124,7 @@ const QuestionsSearchCard: React.FC = () => {
           variant="outlined"
           size="medium"
           color="secondary"
-          className="min-w-[140px] bg-gray-50"
+          className="min-w-[140px] bg-gray-50 w-full md:w-auto"
         />
       </div>
       <hr className="border-t border-gray-200 -mx-4 mt-7" />
@@ -165,7 +165,7 @@ const QuestionsSearchCard: React.FC = () => {
                     ))}
                   </div>
 
-                  <div className="flex text-sm text-gray-500 gap-6 items-center mt-1">
+                  <div className="flex flex-wrap text-sm text-gray-500 gap-x-4 gap-y-1 items-center mt-1">
                     <span className="flex items-center gap-1">
                         <RiThumbUpLine className="text-gray-400" size={14} />  
                       {q.votes} votes

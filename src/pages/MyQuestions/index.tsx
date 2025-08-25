@@ -17,6 +17,7 @@ export const MyQuestions: React.FC<MyQuestionsProps> = ({
       <Header
         title={headerTitle}
         buttonText={headerButtonText}
+        showButton={true}
         icon={<RiAddLine />}
         />
 
