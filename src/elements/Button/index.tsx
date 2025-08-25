@@ -1,5 +1,6 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import type { ButtonProps } from "./Button.types";
+import { LoaderLine } from "remixicon-react";
 import {
   getButtonStyles,
   getIconStyles,

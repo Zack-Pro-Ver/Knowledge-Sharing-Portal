@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import type { TypographyProps } from "./Typography.types";
 import { getTypographyStyles } from "./Typography.styles";
 
@@ -43,7 +43,8 @@ const Typography = forwardRef<HTMLElement, TypographyProps>((props, ref) => {
   return (
     <Component
       ref={ref}
-      className={`${typographyStyles} ${className}`}
+      // className={`${typographyStyles} ${className}`}
+      className={`${className} ${typographyStyles}`}
       {...otherProps}
     >
       {children}
