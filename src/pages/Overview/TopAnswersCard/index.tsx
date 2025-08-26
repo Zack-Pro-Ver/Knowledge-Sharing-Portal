@@ -29,12 +29,10 @@ interface Props {
 export const TopAnswersCard = () => {
   return (
     <Card className="w-110-h-180 p-3">
-      <CardHeader>
-        <Stack direction="row" justify-content alignItems="center">
-          <Typography variant="h6">Add Questions</Typography>
-          <Button variant="text">View All</Button>
-        </Stack>
-      </CardHeader>
+      <CardHeader
+        title={<Typography variant="h6">Add Questions</Typography>}
+        action={<Button variant="text">View All</Button>}
+      />
 
       <Stack direction="column" spacing={3}>
         {TopAnswersCardStats.map(
