@@ -37,6 +37,7 @@ export const Card: React.FC<CardProps> = ({
 // Card Header Component
 export const CardHeader: React.FC<CardHeaderProps> = ({
   title,
+  children,
   subheader,
   avatar,
   action,
@@ -55,6 +56,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
         </div>
       </div>
       {action && <div>{action}</div>}
+      <div className="">{children}</div>
     </div>
   );
 };
