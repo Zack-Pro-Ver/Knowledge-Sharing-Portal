@@ -233,7 +233,7 @@ export const MyAnswers = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 border-gray-300 outline-offset-2"
+              className="px-3 py-2 border rounded-md focus:ring-1  border-gray-300 outline-offset-2"
             >
               {filters[1].options.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -261,7 +261,12 @@ export const MyAnswers = () => {
                 elevation={1}
                 className="p-4 rounded-none border-t-0 hover:bg-gray-50 transition-colors"
               >
-                <div className="flex gap-4">
+                
+                <div
+    className={`flex gap-4 ${
+      index === filteredAnswers.length - 1 ? "rounded-b-md" : ""
+    }`}
+  >
                   {/* Avatar + ThumbsUp */}
                   <div className="flex flex-col items-center gap-2">
                     <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
