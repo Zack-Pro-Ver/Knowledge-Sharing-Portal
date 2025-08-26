@@ -8,14 +8,18 @@ const Tab: React.FC<TabsProps> = ({ tabs, activeIndex, onTabChange, className })
     <nav className={`${tabClasses.root} ${className || ""}`}>
       {tabs.map((tab, index) => (
         <Button
+          variant="text"
+          size="medium"
+          disableElevation={true}
           key={index}
-          className={getTabStyles(index === activeIndex)}
+          className={`${getTabStyles(index === activeIndex)} rounded-none hover:bg-transparent active:bg-transparent`}
           onClick={() => onTabChange(index)}
         >
           {tab.label}
         </Button>
-      ))}
-    </nav>
+      ))
+      }
+    </nav >
 
   );
 };
