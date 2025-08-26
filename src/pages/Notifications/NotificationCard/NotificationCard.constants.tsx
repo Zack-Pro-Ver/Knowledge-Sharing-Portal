@@ -1,0 +1,98 @@
+
+import {
+  RiAtLine,
+  RiChat1Line,
+  RiCheckDoubleLine,
+  RiFileChartLine,
+  RiMedalLine,
+  RiMessageLine,
+  RiThumbUpLine,
+  RiUserAddLine,
+} from "@remixicon/react";
+
+export const notifications = [
+  {
+    id: 1,
+    type: "Answers",
+    icon: <RiChat1Line size={20} />,
+    iconColor: "!bg-blue-100 !text-blue-600",
+    title: "Your question received a new answer",
+    description:
+      'Someone answered your question "How to implement authentication in Next.js?"',
+    time: "2 minutes ago",
+    unread: true,
+  },
+  {
+    id: 2,
+    type: "Answers",
+    icon: <RiCheckDoubleLine size={20} />,
+    iconColor: "bg-green-100 text-green-600",
+    title: "Your answer was accepted",
+    description:
+      'Your answer to "React performance optimization" was marked as the best answer',
+    time: "1 hour ago",
+    unread: true,
+  },
+  {
+    id: 3,
+    type: "Badges",
+    icon: <RiMedalLine size={20} />,
+    iconColor: "bg-purple-100 text-purple-600",
+    title: "New badge earned",
+    description: 'Congratulations! You earned the "Helpful Contributor" badge',
+    time: "3 hours ago",
+    unread: true,
+  },
+  {
+    id: 4,
+    type: "Votes",
+    icon: <RiThumbUpLine size={20} />,
+    iconColor: "bg-yellow-100 text-yellow-600",
+    title: "Your answer received upvotes",
+    description: "5 people found your answer helpful",
+    time: "5 hours ago",
+    unread: false,
+  },
+  {
+    id: 5,
+    type: "Answers",
+    icon: <RiMessageLine size={20} />,
+    iconColor: "bg-orange-100 text-orange-600",
+    title: "Someone commented on your answer",
+    description: 'New comment on your answer about "JavaScript async patterns"',
+    time: "1 day ago",
+    unread: false,
+  },
+  {
+    id: 6,
+    type: "Followers",
+    icon: <RiUserAddLine size={20} />,
+    iconColor: "bg-pink-100 text-pink-600",
+    title: "Someone started following you",
+    description: "Sarah Johnson is now following your activity",
+    time: "2 days ago",
+    unread: false,
+  },
+  {
+    id: 7,
+    type: "Followers",
+    icon: <RiAtLine size={20} />,
+    iconColor: "!bg-blue-100 !text-blue-600",
+    title: "You were mentioned in a comment",
+    description:
+      'You were mentioned in a discussion about "Database design patterns"',
+    time: "3 days ago",
+    unread: false,
+  },
+  {
+    id: 8,
+    type: "Followers",
+    icon: <RiFileChartLine size={19} />,
+    iconColor: "bg-gray-100 text-gray-600",
+    title: "You were mentioned in a comment",
+    description:
+      'You were mentioned in a discussion about "Database design patterns"',
+    time: "1 week ago",
+    unread: false,
+  },
+];
