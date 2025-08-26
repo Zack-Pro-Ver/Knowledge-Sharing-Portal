@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import {
   RiSearchLine,
   RiEdit2Line,
@@ -11,59 +12,13 @@ import {
 import Chip from "../../elements/Chip";
 import { Card, CardContent } from "../../elements/Card";
 import Dropdown from "../../elements/Dropdown";
-import type { DropdownOption } from "../../elements/Dropdown/Dropdown.types";
+import Stack from "../../elements/Stack"; 
+import { statusOptions, sortOptions, questions } from "./MyQuestions.constants";
 
-const statusOptions: DropdownOption[] = [
-  { label: "All", value: "all" },
-  { label: "Answered", value: "answered" },
-  { label: "Open", value: "open" },
-  { label: "Closed", value: "closed" },
-];
-
-const sortOptions: DropdownOption[] = [
-  { label: "Newest", value: "newest" },
-  { label: "Oldest", value: "oldest" },
-  { label: "Recent Activity", value: "recent-activity" },
-  { label: "Most Votes", value: "most-votes" },
-];
-
-const questions = [
-  {
-    id: 1,
-    title: "How to implement authentication in Next.js with NextAuth?",
-    tags: ["nextjs", "authentication"],
-    votes: 12,
-    answers: 3,
-    views: 234,
-    date: "2024-01-15",
-    status: "answered",
-    lastActivity:"2 hours ago"
-  },
-  {
-    id: 2,
-    title: "What is the best way to optimize performance in React applications?",
-    tags: ["react", "performance", "optimization"],
-    votes: 8,
-    answers: 5,
-    views: 120,
-    date: "2024-01-20",
-    status: "open",
-    lastActivity:"2 days ago"
-
-  },
-  {
-    id: 3,
-    title: "How do I manage state globally in React?",
-    tags: ["react", "state-management"],
-    votes: 20,
-    answers: 6,
-    views: 450,
-    date: "2024-01-10",
-    status: "open",
-    lastActivity:"2 weeks ago "
-
-  },
-];
+function parseLastActivity(text: string): number {
+  const duration = moment.duration(text);
+  return Date.now() - duration.asMilliseconds();
+}
 
 const QuestionsSearchCard: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -86,15 +41,15 @@ const QuestionsSearchCard: React.FC = () => {
     if (sort === "newest") return new Date(b.date).getTime() - new Date(a.date).getTime();
     if (sort === "oldest") return new Date(a.date).getTime() - new Date(b.date).getTime();
     if (sort === "most-votes") return b.votes - a.votes;
-    if (sort === "recent-activity") return b.answers - a.answers;
+    if (sort === "recent-activity") return parseLastActivity(b.lastActivity) - parseLastActivity(a.lastActivity);
     return 0;
   });
 
   return (
-    <Card variant="outlined" size="large" className="p-4">
-      <div className="flex flex-col md:flex-row gap-3 w-full mb-4">
+    <Card variant="outlined" size="large" className="p-4 pb-0 ">
+      <Stack direction="row" spacing={3} wrap="wrap" className="w-full mb-4 ">
         <div className="relative flex-1">
-            <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+          <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           <input
             type="text"
             placeholder="Search my questions..."
@@ -126,90 +81,85 @@ const QuestionsSearchCard: React.FC = () => {
           color="secondary"
           className="min-w-[140px] bg-gray-50 w-full md:w-auto"
         />
-      </div>
+      </Stack>
+
       <hr className="border-t border-gray-200 -mx-4 mt-7" />
 
-
       {/* Render Questions */}
-      <div className=" -mx-4 ">
-         {filteredQuestions.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-10 text-center text-gray-500">
-          <div className="w-12 h-12 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-            <RiQuestionMark className="text-2xl text-gray-500" />
-         </div>
-          <p className="font-semibold text-gray-900">No questions found</p>
-          <p className="text-sm mt-1">Try adjusting your search or filter criteria</p>
-          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Ask Your First Question
-          </button>
-        </div>
+      <div className="-mx-4 ">
+        {filteredQuestions.length === 0 ? (
+          <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} className="py-10 text-center text-gray-500">
+            <div className="w-12 h-12 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+              <RiQuestionMark className="text-2xl text-gray-500" />
+            </div>
+            <p className="font-semibold text-gray-900">No questions found</p>
+            <p className="text-sm mt-1">Try adjusting your search or filter criteria</p>
+            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              Ask Your First Question
+            </button>
+          </Stack>
         ) : (
-        filteredQuestions.map((q) => (
-          <div key={q.id} className="hover:bg-gray-50 border-b border-gray-200 last:border-b-0 ">
-            <CardContent>
-              <div className="flex justify-between items-start">
-                {/* Left Side */}
-                <div className="flex flex-col gap-2">
-                  <h2 className="text-2xl font-regular text-gray-900">
-                    {q.title}
-                  </h2>
+          filteredQuestions.map((q) => (
+            <div key={q.id} className="hover:bg-gray-50 border-b border-gray-200 last:border-b-0 ">
+              <CardContent>
+                <Stack direction="row" spacing={4} wrap="wrap" justifyContent="space-between" alignItems="flex-start">
+                  {/* Left Side */}
+                  <Stack direction="column" spacing={2}>
+                    <h2 className="text-2xl font-regular text-gray-900">{q.title}</h2>
 
-                  <div className="flex gap-2 flex-wrap">
-                    {q.tags.map((tag) => (
-                      <Chip
-                        key={tag}
-                        label={tag}
-                        size="small"
-                        className="rounded-md"
-                      />
-                    ))}
-                  </div>
+                    <Stack direction="row" spacing={2} wrap="wrap">
+                      {q.tags.map((tag) => (
+                        <Chip key={tag} label={tag} size="small" className="rounded-md" />
+                      ))}
+                    </Stack>
 
-                  <div className="flex flex-wrap text-sm text-gray-500 gap-x-4 gap-y-1 items-center mt-1">
-                    <span className="flex items-center gap-1">
-                        <RiThumbUpLine className="text-gray-400" size={14} />  
-                      {q.votes} votes
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <RiMessage2Line className="text-gray-400" size={14} /> 
-                      {q.answers} answers
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <RiEyeLine className="text-gray-400" size={14} /> 
-                      views
-                    </span>
-                    <span>Asked {q.date}</span>
-                    <span>Last activity: {q.lastActivity}</span>
-                  </div>
-                </div>
+                    <Stack direction="row" spacing={6} wrap="wrap"  className="text-gray-500 mt-2 text-sm">
+                      <span className="flex items-center gap-1">
+                        <RiThumbUpLine className="text-gray-400" size={14} />
+                        {q.votes} votes
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <RiMessage2Line className="text-gray-400" size={14} />
+                        {q.answers} answers
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <RiEyeLine className="text-gray-400" size={14} />
+                        {q.views} views
+                      </span>
+                      <span>Asked {moment(q.date).format("MMMM D, YYYY")}</span>
+                      <span>
+                        Last activity: {moment().subtract(moment.duration(q.lastActivity)).fromNow()}
+                      </span>
+                    </Stack>
+                  </Stack>
 
-                {/* Right Side */}
-                <div className="flex items-center gap-5">
-                  <span
-                    className={`text-xs px-2 py-1 rounded-lg font-medium ${
-                      q.status === "answered"
-                        ? "bg-green-100 text-green-600"
-                        : q.status === "open"
-                        ? "bg-blue-100 text-blue-600"
-                        : "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    {q.status}
-                  </span>
-                  <div className="flex gap-2 text-gray-400">
-                    <button className="hover:text-blue-600 cursor-pointer">
-                        <RiEdit2Line size={16} /> 
-                    </button>
-                    <button className="hover:text-red-600 cursor-pointer">  
+                  {/* Right Side */}
+                  <Stack direction="row" spacing={5} alignItems="center">
+                    <span
+                      className={`text-xs px-2 py-1 rounded-lg font-medium ${
+                        q.status === "answered"
+                          ? "bg-green-100 text-green-600"
+                          : q.status === "open"
+                          ? "bg-blue-100 text-blue-600"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {q.status}
+                    </span>
+                    <Stack direction="row" spacing={2} alignItems="center" className="text-gray-400">
+                      <button className="hover:text-blue-600 cursor-pointer">
+                        <RiEdit2Line size={16} />
+                      </button>
+                      <button className="hover:text-red-600 cursor-pointer">
                         <RiDeleteBinLine size={16} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </div>
-        ))
-  )}
+                      </button>
+                    </Stack>
+                  </Stack>
+                </Stack>
+              </CardContent>
+            </div>
+          ))
+        )}
       </div>
     </Card>
   );
