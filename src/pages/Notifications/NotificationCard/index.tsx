@@ -3,7 +3,8 @@ import { RiNotificationLine } from "@remixicon/react";
 import { Card, CardContent } from "../../../elements/Card";
 import Stack from "../../../elements/Stack";
 import { notifications } from "./NotificationCard.constants";
-import { IconWrapper } from "../../../elements/IconWrapper"; 
+import { IconWrapper } from "../../../elements/IconWrapper";
+import Typography from "../../../elements/Typography"; 
 
 const filterOptions = ["All", "Unread", "Answers", "Badges", "Votes"];
 
@@ -18,9 +19,8 @@ export const NotificationCard: React.FC = () => {
 
   return (
     <Stack direction="column">
-
       <Stack className="p-4  !gap-0">
-        {/* Filter Bar */}
+        
         <Stack>
           <Stack
             direction="row"
@@ -28,7 +28,7 @@ export const NotificationCard: React.FC = () => {
             spacing={0}
             className="border border-b-0 rounded-t-lg border-gray-300 p-6 bg-white"
           >
-            {/* Left side */}
+            
             <Stack direction="row" spacing={2}>
               <Stack className="relative w-10">
                 <RiNotificationLine
@@ -36,12 +36,11 @@ export const NotificationCard: React.FC = () => {
                   size={18}
                 />
               </Stack>
-              <span className="font-normal text-sm text-gray-600">
+              <Typography variant="body2" color="textSecondary">
                 {notifications.filter((n) => n.unread).length} unread notifications
-              </span>
+              </Typography>
             </Stack>
 
-            {/* Right side (filters) */}
             <Stack direction="row" spacing={2} className="pl-4">
               {filterOptions.map((item) => (
                 <button
@@ -60,7 +59,6 @@ export const NotificationCard: React.FC = () => {
           </Stack>
         </Stack>
 
-        {/* Notifications Card */}
         <Card
           variant="outlined"
           size="large"
@@ -68,7 +66,9 @@ export const NotificationCard: React.FC = () => {
         >
           {filtered.length === 0 ? (
             <CardContent className="text-center text-gray-500 py-10">
-              No notifications
+              <Typography variant="body2" color="textSecondary">
+                No notifications
+              </Typography>
             </CardContent>
           ) : (
             filtered.map((item, idx) => (
@@ -83,32 +83,40 @@ export const NotificationCard: React.FC = () => {
                   idx !== filtered.length - 1 ? "border-b border-gray-200" : ""
                 }`}
               >
-                {/* Left part */}
+
                 <Stack direction="row" spacing={3}>
-                  <IconWrapper bgColor={item.iconColor}>
-                    {item.icon}
-                  </IconWrapper>
+                  <IconWrapper bgColor={item.iconColor}>{item.icon}</IconWrapper>
 
                   <Stack direction="column" spacing={1}>
-                    <h3 className="font-medium text-sm text-blue-800">
+                    <Typography variant="h6" className="text-blue-800">
                       {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {item.description}
+                    </Typography>
                     <Stack direction="row" spacing={2}>
-                      <p className="text-xs text-blue-800">View</p>
-                      <p className="text-xs">Mark as read</p>
+                      <Typography
+                        variant="caption"
+                        className="text-blue-800 cursor-pointer"
+                      >
+                        View
+                      </Typography>
+                      <Typography variant="caption" className="cursor-pointer">
+                        Mark as read
+                      </Typography>
                     </Stack>
                   </Stack>
                 </Stack>
 
-                {/* Right part */}
                 <Stack
                   direction="row"
                   alignItems="center"
                   spacing={2}
                   className="text-sm text-gray-500"
                 >
-                  {item.time}
+                  <Typography variant="caption" color="textSecondary">
+                    {item.time}
+                  </Typography>
                   {item.unread && (
                     <span className="h-2 w-2 bg-blue-500 rounded-full"></span>
                   )}
