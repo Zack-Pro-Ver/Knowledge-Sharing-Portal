@@ -80,7 +80,6 @@ export const MyAnswers = () => {
             </Card>
           ))}
         </Stack>
-
        <Card
           variant="outlined"
           size="medium"
@@ -104,22 +103,21 @@ export const MyAnswers = () => {
                 className="w-full px-3 py-2 rounded-md pl-10 text-black border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               />
             </div>
-
-           
             <Dropdown
               options={filters[0].options}
               value={statusFilter}
               onChange={(val) => setStatusFilter(val as typeof statusFilter)}
-              className="min-w-[160px]"
-              
+              className="min-w-[160px] text-black border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+             color="secondary"
+             variant="outlined"
             />
-
-            
             <Dropdown
               options={filters[1].options}
               value={sortBy}
               onChange={(val) => setSortBy(val as typeof sortBy)}
-              className="min-w-[160px]"
+              className="min-w-[160px] "
+              color="secondary"
+
             />
           </Stack>
         </Card>
