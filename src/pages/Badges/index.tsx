@@ -1,11 +1,11 @@
-import { Header } from "../../components/Header"
+import BadgesCards from "./BadgesCards"
+import { BadgesHeader } from "./BadgesHeader"
 
 export const Badges = () => {
   return (
-    <Header
-      title='My Badges'
-      description="Track your achievements and progress"
-      showButton={false}
-    />
+    <>
+      <BadgesHeader />
+      <BadgesCards />
+    </>
   )
 }
