@@ -10,15 +10,19 @@ import {
 
 import { Header } from "../../components/Header";
 import Stack from "../../elements/Stack"; 
-import { stats ,answers, filters} from "./MyAnswers.constants";
-export const MyAnswers = () => {
-  
-   
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("newest");
+import { stats, answers, filters } from "./MyAnswers.constants";
+import type { Answer } from "./MyAnswers.constants";
 
-  const filteredAnswers = answers
+export const MyAnswers = () => {
+  const [search, setSearch] = useState<string>("");
+  const [statusFilter, setStatusFilter] = useState<
+    "all" | "accepted" | "answered" | "pending"
+  >("all");
+  const [sortBy, setSortBy] = useState<
+    "newest" | "oldest" | "most votes" | "recent activity"
+  >("newest");
+
+  const filteredAnswers: Answer[] = answers
     .filter(
       (a) =>
         a.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -95,7 +99,7 @@ export const MyAnswers = () => {
 
             <select
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
+              onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
               className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 border-gray-300 outline-offset-2"
             >
               {filters[0].options.map((option) => (
@@ -107,7 +111,7 @@ export const MyAnswers = () => {
 
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
               className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 outline-offset-2"
             >
               {filters[1].options.map((option) => (
@@ -119,7 +123,6 @@ export const MyAnswers = () => {
           </Stack>
         </Card>
 
-  
         <div className="border border-gray-200 border-t-0 rounded-b-md overflow-hidden">
           {filteredAnswers.map((answer, index) => {
             const avatarIcons = [
@@ -184,7 +187,7 @@ export const MyAnswers = () => {
                       justifyContent="space-between"
                       className="text-md text-gray-500 pt-1"
                     >
-                     <div className="flex gap-8"> 
+                      <div className="flex gap-8"> 
                         <span>Answered {moment(answer.answeredAt).fromNow()}</span>
                         <span>Last activity: {moment(answer.lastActivity).fromNow()}</span>
                       </div>
