@@ -1,5 +1,6 @@
 import { useState } from "react";
 import moment from "moment";
+import Button from "../../elements/Button";
 import Card, { CardHeader } from "../../elements/Card";
 import {
   RiChat1Line,
@@ -9,7 +10,8 @@ import {
 } from "@remixicon/react";
 
 import { Header } from "../../components/Header";
-import Stack from "../../elements/Stack"; 
+import Stack from "../../elements/Stack";
+import Dropdown from "../../elements/Dropdown"; 
 import { stats, answers, filters } from "./MyAnswers.constants";
 import type { Answer } from "./MyAnswers.constants";
 
@@ -79,13 +81,19 @@ export const MyAnswers = () => {
           ))}
         </Stack>
 
-        <Card
+       <Card
           variant="outlined"
           size="medium"
           elevation={1}
-          className="p-6 text-lg border-gray-200 rounded-t-md rounded-b-none"
+          className="p-6 text-lg border-gray-200 rounded-t-md rounded-b-none overflow-visible"
         >
-          <Stack direction="row" spacing={4} alignItems="center" className="flex-col md:flex-row">
+          <Stack
+            direction="row"
+            spacing={4}
+            alignItems="center"
+            className="flex-col md:flex-row"
+          >
+            {/* ✅ Search input */}
             <div className="relative flex-1 w-full">
               <RiSearchLine className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
               <input
@@ -93,33 +101,26 @@ export const MyAnswers = () => {
                 placeholder="Search answers..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full p-2 rounded-md pl-10 text-black border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-md pl-10 text-black border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
-            <select
+           
+            <Dropdown
+              options={filters[0].options}
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
-              className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 border-gray-300 outline-offset-2"
-            >
-              {filters[0].options.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+              onChange={(val) => setStatusFilter(val as typeof statusFilter)}
+              className="min-w-[160px]"
+              
+            />
 
-            <select
+            
+            <Dropdown
+              options={filters[1].options}
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="px-3 py-2 border rounded-md focus:ring-1 focus:ring-blue-500 outline-offset-2"
-            >
-              {filters[1].options.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+              onChange={(val) => setSortBy(val as typeof sortBy)}
+              className="min-w-[160px]"
+            />
           </Stack>
         </Card>
 
@@ -191,18 +192,29 @@ export const MyAnswers = () => {
                         <span>Answered {moment(answer.answeredAt).fromNow()}</span>
                         <span>Last activity: {moment(answer.lastActivity).fromNow()}</span>
                       </div>
-                      <Stack direction="row" spacing={4}>
-                        {answer.actions.map((action) => (
-                          <button
-                            key={action}
-                            className={`hover:underline ${
-                              action === "Edit" ? "text-black" : "text-blue-600"
-                            }`}
-                          >
-                            {action}
-                          </button>
-                        ))}
-                      </Stack>
+                    <Stack direction="row" spacing={4}>
+                    {answer.actions.map((action) => (
+                            <Button
+                              key={action}
+                              variant="text"
+                              size="small"
+                              disableElevation 
+                              className={`text-sm ${
+                                action === "Edit" ? "text-gray-500" : "text-blue-600"
+                              }`}
+                              onClick={() => {
+                                if (action === "Edit") {
+                                
+                                } else if (action === "View") {
+                                
+                                }
+                              }}
+                            >
+                              {action}
+                            </Button>
+                      ))}
+                    </Stack>
+
                     </Stack>
                   </Stack>
                 </Stack>
