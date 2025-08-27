@@ -4,7 +4,7 @@ import { countColor, cardData } from "./BadgesCards.constants"
 
 const BadgesCards = () => {
     return (
-        <div className="grid grid-cols-5 gap-3">
+        <Stack className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {cardData.map((item, index) => (
                 <Card
                     key={index}
@@ -30,7 +30,7 @@ const BadgesCards = () => {
                 </Card>
             ))
             }
-        </div >
+        </Stack >
     )
 }
 
