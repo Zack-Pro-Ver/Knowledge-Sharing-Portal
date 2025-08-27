@@ -1,16 +1,17 @@
 import { RiQuestionLine } from "@remixicon/react";
 import { Header } from "../../components/Header";
+import { TopAnswersCard } from "./TopAnswersCard";
 
 export const Overview = () => {
   return (
     <>
       <Header
         buttonText="Add Question"
-        // description="Here's what's happening with your account"
+        showButton={true} // Added required property
         icon={<RiQuestionLine size="medium" />}
-        title="Welcome back, John!
-"
+        title="Welcome back, John!"
       />
+      <TopAnswersCard />
     </>
   );
 };
