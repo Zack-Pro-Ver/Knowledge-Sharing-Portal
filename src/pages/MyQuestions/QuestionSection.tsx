@@ -7,12 +7,17 @@ import {
   RiThumbUpLine,
   RiMessage2Line,
   RiEyeLine,
-  RiQuestionMark
+  RiQuestionMark,
 } from "@remixicon/react";
+
 import Chip from "../../elements/Chip";
 import { Card, CardContent } from "../../elements/Card";
 import Dropdown from "../../elements/Dropdown";
-import Stack from "../../elements/Stack"; 
+import Stack from "../../elements/Stack";
+import Button from "../../elements/Button";
+import Typography from "../../elements/Typography";
+import TextField from "../../elements/TextField";
+
 import { statusOptions, sortOptions, questions } from "./MyQuestions.constants";
 
 function parseLastActivity(text: string): number {
@@ -48,17 +53,18 @@ const QuestionsSearchCard: React.FC = () => {
   return (
     <Card variant="outlined" size="large" className="p-4 pb-0 ">
       <Stack direction="row" spacing={3} wrap="wrap" className="w-full mb-4 ">
-        <div className="relative flex-1">
-          <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          <input
-            type="text"
+        <Stack className="relative flex-1">
+        <TextField
             placeholder="Search my questions..."
-            aria-label="Search questions"
-            className="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            variant="outlined"
+            size="medium"
+            color="primary"
+            startAdornment={<RiSearchLine />}
+            aria-label="Search questions"
           />
-        </div>
+        </Stack>
 
         <Dropdown
           options={statusOptions}
@@ -85,18 +91,30 @@ const QuestionsSearchCard: React.FC = () => {
 
       <hr className="border-t border-gray-200 -mx-4 mt-7" />
 
-      {/* Render Questions */}
       <div className="-mx-4 ">
         {filteredQuestions.length === 0 ? (
-          <Stack direction="column" alignItems="center" justifyContent="center" spacing={4} className="py-10 text-center text-gray-500">
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={4}
+            className="py-10 text-center text-gray-500"
+          >
             <div className="w-12 h-12 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
               <RiQuestionMark className="text-2xl text-gray-500" />
             </div>
-            <p className="font-semibold text-gray-900">No questions found</p>
-            <p className="text-sm mt-1">Try adjusting your search or filter criteria</p>
-            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+
+            <Typography variant="body2" fontWeight="semibold" color="textPrimary">
+              No questions found
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary">
+              Try adjusting your search or filter criteria
+            </Typography>
+
+            <Button variant="contained" color="primary" size="medium">
               Ask Your First Question
-            </button>
+            </Button>
           </Stack>
         ) : (
           filteredQuestions.map((q) => (
@@ -105,24 +123,26 @@ const QuestionsSearchCard: React.FC = () => {
                 <Stack direction="row" spacing={4} wrap="wrap" justifyContent="space-between" alignItems="flex-start">
                   {/* Left Side */}
                   <Stack direction="column" spacing={2}>
-                    <h2 className="text-2xl font-regular text-gray-900">{q.title}</h2>
+                    <Typography variant="h4" color="textPrimary">
+                      {q.title}
+                    </Typography>
 
                     <Stack direction="row" spacing={2} wrap="wrap">
                       {q.tags.map((tag) => (
-                        <Chip key={tag} label={tag} size="small" className="rounded-md" />
+                        <Chip key={tag} label={tag} size="small" className="rounded-md " />
                       ))}
                     </Stack>
 
-                    <Stack direction="row" spacing={6} wrap="wrap"  className="text-gray-500 mt-2 text-sm">
-                      <span className="flex items-center gap-1">
+              <Stack direction="row" spacing={6} wrap="wrap"  className="text-gray-500 mt-3 text-sm">
+                      <span className="flex items-center gap-2">
                         <RiThumbUpLine className="text-gray-400" size={14} />
                         {q.votes} votes
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-2">
                         <RiMessage2Line className="text-gray-400" size={14} />
                         {q.answers} answers
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-2">
                         <RiEyeLine className="text-gray-400" size={14} />
                         {q.views} views
                       </span>
@@ -134,25 +154,28 @@ const QuestionsSearchCard: React.FC = () => {
                   </Stack>
 
                   {/* Right Side */}
-                  <Stack direction="row" spacing={5} alignItems="center">
-                    <span
+                  <Stack direction="row" spacing={0} alignItems="center">
+                    <Typography
+                      variant="caption"
+                      component="span"
                       className={`text-xs px-2 py-1 rounded-lg font-medium ${
                         q.status === "answered"
-                          ? "bg-green-100 text-green-600"
+                          ? "bg-green-200 text-green-700"
                           : q.status === "open"
-                          ? "bg-blue-100 text-blue-600"
-                          : "bg-gray-100 text-gray-600"
+                          ? "bg-blue-200 text-blue-600"
+                          : "bg-gray-200 text-gray-600"
                       }`}
                     >
                       {q.status}
-                    </span>
-                    <Stack direction="row" spacing={2} alignItems="center" className="text-gray-400">
-                      <button className="hover:text-blue-600 cursor-pointer">
-                        <RiEdit2Line size={16} />
-                      </button>
-                      <button className="hover:text-red-600 cursor-pointer">
-                        <RiDeleteBinLine size={16} />
-                      </button>
+                    </Typography>
+
+                    <Stack direction="row" spacing={0} alignItems="center" className="text-gray-400">
+                    <Button variant="text" className="text-gray-500 hover:text-blue-600 shadow-none" disableElevation={true}>
+                      <RiEdit2Line size={16} />
+                    </Button>
+                    <Button variant="text" className="text-gray-500 hover:text-red-600 shadow-none" disableElevation={true}>
+                      <RiDeleteBinLine size={16} />
+                    </Button>
                     </Stack>
                   </Stack>
                 </Stack>

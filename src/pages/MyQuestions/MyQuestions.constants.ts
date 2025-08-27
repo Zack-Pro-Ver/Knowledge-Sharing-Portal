@@ -1,5 +1,19 @@
 import type { DropdownOption } from "../../elements/Dropdown/Dropdown.types";
 
+type QuestionStatus = "answered" | "open" | "closed";
+
+interface Question {
+  id: number;
+  title: string;
+  tags: string[];
+  votes: number;
+  answers: number;
+  views: number;
+  date: string;
+  status: QuestionStatus;
+  lastActivity: string;
+}
+
 export const statusOptions: DropdownOption[] = [
   { label: "All", value: "all" },
   { label: "Answered", value: "answered" },
@@ -14,7 +28,7 @@ export const sortOptions: DropdownOption[] = [
   { label: "Most Votes", value: "most-votes" },
 ];
 
-export const questions = [
+export const questions : Question[] = [
   {
     id: 1,
     title: "How to implement authentication in Next.js with NextAuth?",
