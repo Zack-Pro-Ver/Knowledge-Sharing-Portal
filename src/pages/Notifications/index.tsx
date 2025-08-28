@@ -1,3 +1,13 @@
-export const Notification = () =>{
-  return <>Notification</>
+import { NotificationHeader } from "./NotificationHeader"
+import NotificationCard from "./NotificationCard"
+
+export const Notification = () => {
+
+      return(
+        <>
+         <NotificationHeader />
+         <NotificationCard />
+        </>
+      )
+
 }
