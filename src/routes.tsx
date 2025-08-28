@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Overview } from "./pages/Overview";
 import { Badges } from "./pages/Badges";
-import { MyAnswers } from "./pages/MyAnswers";
+import { MyAnswers } from "./pages/MyAnswers/MyAnswerHeader";
 import { MyQuestions } from "./pages/MyQuestions";
 import { MyProfile } from "./pages/MyProfile";
 import { Notification } from "./pages/Notifications";
