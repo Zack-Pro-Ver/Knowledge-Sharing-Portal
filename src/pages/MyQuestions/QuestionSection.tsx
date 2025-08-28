@@ -170,10 +170,10 @@ const QuestionsSearchCard: React.FC = () => {
                     </Typography>
 
                     <Stack direction="row" spacing={0} alignItems="center" className="text-gray-400">
-                    <Button variant="text" className="text-gray-500 hover:text-blue-600 shadow-none" disableElevation={true}>
+                    <Button variant="text" className="text-gray-500 hover:text-blue-600 shadow-none" disableElevation={true} aria-label={`Edit question: ${q.title}`}>
                       <RiEdit2Line size={16} />
                     </Button>
-                    <Button variant="text" className="text-gray-500 hover:text-red-600 shadow-none" disableElevation={true}>
+                    <Button variant="text" className="text-gray-500 hover:text-red-600 shadow-none" disableElevation={true} aria-label={`Delete question: ${q.title}`}>
                       <RiDeleteBinLine size={16} />
                     </Button>
                     </Stack>
