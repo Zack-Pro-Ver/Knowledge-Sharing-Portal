@@ -1,11 +1,14 @@
-import { Header } from "../../components/Header"
+import { Stack } from "../../elements"
+import BadgesCards from "./BadgesCards"
+import { BadgesHeader } from "./BadgesHeader"
+import BadgesMainCards from "./BadgesMainCards"
 
 export const Badges = () => {
   return (
-    <Header
-      title='My Badges'
-      description="Track your achievements and progress"
-      showButton={false}
-    />
+    <Stack direction="column" spacing={4} justifyContent="center">
+      <BadgesHeader />
+      <BadgesCards />
+      <BadgesMainCards />
+    </Stack>
   )
 }
